@@ -40,6 +40,19 @@ done
 
 step() { printf '\n\033[1;36m▸ %s\033[0m\n' "$1"; }
 
+# GitHub 在国内经常连不上 443：如果本机有系统代理（环境变量或 macOS 的设置），
+# 就让 git / npm 也走它，避免 push 超时。
+if [ -z "${HTTPS_PROXY:-}" ] && [ -z "${https_proxy:-}" ]; then
+  detected_proxy=$(node -e "import('./tools/lib/proxy.mjs').then(m => process.stdout.write(m.detectProxy()))" 2>/dev/null || true)
+  if [ -n "$detected_proxy" ]; then
+    export HTTPS_PROXY="$detected_proxy"
+    export HTTP_PROXY="$detected_proxy"
+    export https_proxy="$detected_proxy"
+    export http_proxy="$detected_proxy"
+    echo "▸ 检测到系统代理 $detected_proxy，git / npm 将走代理"
+  fi
+fi
+
 if [ ! -d node_modules ]; then
   step "首次运行：安装依赖"
   npm install --no-audit --no-fund

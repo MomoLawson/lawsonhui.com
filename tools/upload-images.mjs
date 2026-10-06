@@ -22,6 +22,7 @@ import {
   hashFile,
   listImages,
   loadEnv,
+  normalizeManifest,
   parseArgs,
   readManifest,
   sleep,
@@ -147,6 +148,7 @@ async function checkUrl(url) {
 async function main() {
   const key = apiKey();
   const manifest = await readManifest();
+  const before = normalizeManifest(manifest);
   const proxy = await setupProxy({ proxy: flags.proxy });
   if (proxy) log(`▸ Node 走系统代理：${proxy}`);
 
@@ -201,7 +203,7 @@ async function main() {
   if (!plan.length) {
     log('✓ 所有图片都已上传过，无需更新。');
     if (verifyAfter) await verifyEntries(manifest, relPaths);
-    await writeManifest(manifest);
+    await flushManifest(manifest, before);
     return;
   }
 
@@ -226,8 +228,7 @@ async function main() {
         manifest.images[current.relPath] = {
           sha256: current.sha256,
           bytes: current.bytes,
-          ...result,
-          verifiedAt: null
+          ...result
         };
         delete manifest.failed[current.relPath];
         done += 1;
@@ -248,11 +249,11 @@ async function main() {
 
   await Promise.all(Array.from({ length: Math.min(CONCURRENCY, queue.length) }, (_, i) => worker(i)));
 
-  await writeManifest(manifest);
+  await flushManifest(manifest, before);
   log(`\n上传完成：成功 ${done}，失败 ${failed}。清单已写入 tools/image-manifest.json`);
 
   if (verifyAfter) await verifyEntries(manifest, relPaths);
-  await writeManifest(manifest);
+  await flushManifest(manifest, before);
 
   if (failed > 0) {
     warn(`\n有 ${failed} 张图片上传失败，重新执行一次即可（成功过的不会重传）。`);
@@ -277,14 +278,13 @@ async function verifyEntries(manifest, relPaths) {
       const entry = manifest.images[relPath];
       const state = await checkUrl(entry.url);
       if (state === 'ok') {
-        entry.verifiedAt = new Date().toISOString();
+        // 链接正常：什么都不用记，保持清单稳定
       } else if (state === 'missing') {
         broken += 1;
         warn(`  ! 链接已失效（404/410），标记待重传：${relPath} → ${entry.url}`);
         delete manifest.images[relPath];
       } else {
         unknown += 1;
-        entry.verifyNote = 'network-unknown';
       }
     }
   }
@@ -297,6 +297,13 @@ async function verifyEntries(manifest, relPaths) {
   } else {
     log(`! ${broken} 个链接失效（下次运行会自动重传），${unknown} 个暂时无法确认`);
   }
+}
+
+/** 只有清单内容真的变了才落盘，避免每次构建都产生一个只有时间戳的提交 */
+async function flushManifest(manifest, before) {
+  if (normalizeManifest(manifest) === before) return false;
+  await writeManifest(manifest);
+  return true;
 }
 
 main().catch(error => {

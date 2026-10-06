@@ -154,3 +154,31 @@ export function formatBytes(bytes) {
 export function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
+
+/**
+ * 去掉每次运行都会变的时间戳，用来判断清单「内容上是否真的变了」。
+ * 没变就不写文件，避免每次构建都产生一个无意义的提交。
+ */
+export function normalizeManifest(manifest) {
+  const images = {};
+  for (const key of Object.keys(manifest.images).sort()) {
+    const entry = manifest.images[key];
+    images[key] = {
+      sha256: entry.sha256,
+      bytes: entry.bytes,
+      url: entry.url,
+      thumb: entry.thumb,
+      medium: entry.medium,
+      id: entry.id,
+      width: entry.width,
+      height: entry.height,
+      mime: entry.mime,
+      uploadedAt: entry.uploadedAt
+    };
+  }
+  const failed = {};
+  for (const key of Object.keys(manifest.failed).sort()) {
+    failed[key] = { error: manifest.failed[key].error, sha256: manifest.failed[key].sha256 };
+  }
+  return JSON.stringify({ images, failed });
+}
