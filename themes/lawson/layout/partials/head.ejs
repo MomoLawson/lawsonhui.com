@@ -83,7 +83,7 @@
   <link rel="preconnect" href="https://i.ibb.co" crossorigin>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="<%= theme.assets.mc_font_css %>" media="print" onload="this.media='all'">
-  <link rel="stylesheet" href="<%= url_for('css/lawson.css') %>?v=<%= theme.motion.duration %>">
+  <link rel="stylesheet" href="<%= url_for('css/lawson.css') %>?v=@@ASSET_VERSION@@">
 
   <script id="lawson-data" type="application/json"><%- JSON.stringify(data).replace(/</g, '\\u003c') %></script>
   <script>

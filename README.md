@@ -169,6 +169,61 @@ npm run build                # 或 ./publish.sh
 | 图床 | [ImgBB](https://api.imgbb.com/)（增量上传脚本） |
 | 部署 | GitHub Pages（`gh-pages` 分支） |
 
+---
+
+## 部署到 lawsonhui.com（Cloudflare 反代 + GitHub Pages 源站）
+
+```
+访客 ──► Cloudflare 边缘（IPv4 + IPv6，Universal SSL）──► GitHub Pages（gh-pages 分支）
+```
+
+### DNS 记录（Cloudflare，全部开启代理／橙云）
+
+| 类型 | 名称 | 内容 | 代理 |
+| --- | --- | --- | --- |
+| A | `lawsonhui.com` | `185.199.108.153` | ✅ |
+| A | `lawsonhui.com` | `185.199.109.153` | ✅ |
+| A | `lawsonhui.com` | `185.199.110.153` | ✅ |
+| A | `lawsonhui.com` | `185.199.111.153` | ✅ |
+| AAAA | `lawsonhui.com` | `2606:50c0:8000::153` | ✅ |
+| AAAA | `lawsonhui.com` | `2606:50c0:8001::153` | ✅ |
+| AAAA | `lawsonhui.com` | `2606:50c0:8002::153` | ✅ |
+| AAAA | `lawsonhui.com` | `2606:50c0:8003::153` | ✅ |
+| CNAME | `www.lawsonhui.com` | `momolawson.github.io` | ✅ |
+
+> A / AAAA 是 GitHub Pages 官方地址。开启橙云后访客实际连到 Cloudflare 的任意播地址，
+> IPv4 与 IPv6 同时可用（这也正是需要 Cloudflare 的原因：需要双栈 + 证书 + 缓存）。
+
+### Cloudflare 设置
+
+| 设置 | 值 | 说明 |
+| --- | --- | --- |
+| SSL/TLS 加密模式 | **Full** | 源站证书是 GitHub 的 `*.github.io`，用 Full (strict) 会 526 |
+| Always Use HTTPS | 开 | 所有 `http://` 自动 301 到 `https://` |
+| 最低 TLS 版本 | 1.2 | 顺带开启 TLS 1.3 |
+| IPv6 | 开 | 让 Cloudflare 返回 AAAA |
+| 源站 | GitHub Pages | `x-github-request-id` 响应头可确认 |
+
+### 已验证的结果
+
+```bash
+dig +short A lawsonhui.com @1.1.1.1        # Cloudflare IPv4
+dig +short AAAA lawsonhui.com @1.1.1.1     # Cloudflare IPv6
+curl -I https://lawsonhui.com/             # 200，证书 CN=lawsonhui.com（Let's Encrypt，Cloudflare 签发）
+curl -I http://lawsonhui.com/              # 301 → https://lawsonhui.com/
+curl -I https://www.lawsonhui.com/         # 301 → https://lawsonhui.com/
+```
+
+### 两点需要知道
+
+1. **GitHub 侧会提示域名没有正确配置**：解析指向了 Cloudflare，GitHub 无法自己验证域名，
+   因此也不会为自定义域名签发它自己的证书。访客拿到的是 Cloudflare 的证书，访问完全正常。
+   如果你更希望 GitHub 自己管证书，把这几条记录改成灰云（DNS only）即可 —— 但那样就没有
+   Cloudflare 的 IP 和缓存，国内直连 GitHub 的 443 经常不通。
+2. **更新内容不用手动清缓存**：HTML 在 Cloudflare 是 `DYNAMIC`（不缓存），
+   CSS / JS 由构建脚本按内容生成 `?v=<hash>` 指纹（见 `scripts/lawson.js`），
+   改完执行 `./publish.sh --pages` 就会立刻生效。
+
 ### 设计语言
 
 整体走 Apple 那套：大留白、毛玻璃材质、克制的圆角与阴影、只在 transform / opacity 上做动效、
