@@ -154,7 +154,13 @@ async function main() {
   if (only) relPaths = relPaths.filter(p => p.includes(only));
 
   if (!relPaths.length) {
-    fail(`没有找到任何图片（扫描目录：${(await import('./lib/images.mjs')).SCAN_DIRS.join(', ')}）`);
+    // clone 下来的仓库通常没有 img/ 目录：清单里已经有图床链接，直接跳过即可
+    const known = Object.keys(manifest.images).length;
+    log('');
+    log('▸ 本地没有找到图片目录（img/ 已被 .gitignore 排除，clone 后是正常的）');
+    log(`  清单里已有 ${known} 条图床记录，站点会直接用这些链接构建。`);
+    log('  要重新上传图片，把壁纸放回 img/ 后重新运行即可。');
+    return;
   }
 
   const plan = [];
