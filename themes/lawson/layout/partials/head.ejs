@@ -1,0 +1,145 @@
+<%
+  const L = site.lawson;
+  const IMG = site.imgindex || { backgrounds: {}, avatar: null };
+  const pageTitle = page.title ? page.title + ' · ' + config.title : config.title;
+  const rawDesc = page.description || page.excerpt || config.description || L.hero.subtitle || '';
+  const description = String(rawDesc).replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 160);
+  const canonical = page.path ? config.url.replace(/\/$/, '') + url_for(page.path) : config.url;
+  const shareImage = (IMG.avatar && IMG.avatar.url)
+    || ((IMG.backgrounds[L.theme.default] || {}).pc || [])[0]?.url
+    || '';
+  const settingsDefaults = {
+    skin: L.theme.default,
+    mode: 'system',
+    bgRandom: L.background.random !== false,
+    bgDim: L.background.dim,
+    bgBlur: L.background.blur,
+    bgUrl: '',
+    clickFx: L.theme.click_fx !== false,
+    clickFxTrail: false,
+    typewriter: L.hero.typewriter.enabled !== false,
+    typeSpeed: L.hero.typewriter.speed || 95,
+    reduceMotion: false,
+    fontScale: 100
+  };
+  const data = {
+    settingsKey: 'lawson:settings:v1',
+    defaults: settingsDefaults,
+    backgrounds: IMG.backgrounds,
+    avatar: IMG.avatar,
+    skins: L.theme.skins,
+    typewriter: {
+      enabled: settingsDefaults.typewriter,
+      speed: settingsDefaults.typeSpeed,
+      pause: L.hero.typewriter.pause || 1800,
+      phrases: L.hero.typewriter.phrases || []
+    },
+    search: {
+      enabled: theme.search.enabled !== false,
+      url: url_for('/search.json'),
+      placeholder: theme.search.placeholder,
+      empty: theme.search.empty_text,
+      limit: theme.search.limit || 12,
+      hotkey: theme.search.hotkey || 'k'
+    },
+    clickFx: {
+      primary: theme.assets.ba_click_fx,
+      fallbacks: theme.assets.ba_click_fx_fallback || [],
+      enabled: settingsDefaults.clickFx
+    },
+    motion: {
+      ease: theme.motion.ease,
+      duration: theme.motion.duration
+    },
+    urls: {
+      home: url_for('/'),
+      settings: url_for('settings/')
+    },
+    topbar: {
+      blendOffset: theme.topbar.blend_offset || 24
+    },
+    imageStats: IMG.stats || { total: 0, uploaded: 0, local: 0 }
+  };
+%>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title><%= pageTitle %></title>
+  <meta name="description" content="<%= description %>">
+  <meta name="author" content="<%= L.profile.name || config.author %>">
+  <link rel="canonical" href="<%= canonical %>">
+
+  <meta property="og:type" content="<%= page.layout === 'post' ? 'article' : 'website' %>">
+  <meta property="og:title" content="<%= pageTitle %>">
+  <meta property="og:description" content="<%= description %>">
+  <meta property="og:url" content="<%= canonical %>">
+  <% if (shareImage) { %><meta property="og:image" content="<%= shareImage %>"><% } %>
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#0b0d12" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f4f4f6" media="(prefers-color-scheme: light)">
+
+  <link rel="icon" href="<%= url_for('img/favicon.svg') %>" type="image/svg+xml">
+  <link rel="alternate" href="<%= url_for('atom.xml') %>" type="application/atom+xml" title="<%= config.title %>">
+  <link rel="preconnect" href="https://i.ibb.co" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="<%= theme.assets.mc_font_css %>" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="<%= url_for('css/lawson.css') %>?v=<%= theme.motion.duration %>">
+
+  <script id="lawson-data" type="application/json"><%- JSON.stringify(data).replace(/</g, '\\u003c') %></script>
+  <script>
+    // 这一小段必须同步执行：在首屏绘制前就把皮肤 / 深浅模式 / 随机背景定下来，避免闪屏
+    (function () {
+      var root = document.documentElement;
+      root.dataset.js = '1';
+      try {
+        var data = JSON.parse(document.getElementById('lawson-data').textContent);
+        var stored = {};
+        try { stored = JSON.parse(localStorage.getItem(data.settingsKey) || '{}') || {}; } catch (e) { stored = {}; }
+        var s = Object.assign({}, data.defaults, stored);
+
+        var mql = window.matchMedia('(prefers-color-scheme: dark)');
+        var mode = s.mode === 'system' ? (mql.matches ? 'dark' : 'light') : s.mode;
+
+        root.dataset.skin = s.skin;
+        root.dataset.mode = mode;
+        root.dataset.modePref = s.mode;
+        root.dataset.motion = s.reduceMotion ? 'reduced' : 'full';
+        root.style.setProperty('--bg-dim', String(s.bgDim / 100));
+        root.style.setProperty('--bg-blur', s.bgBlur + 'px');
+        root.style.setProperty('--font-scale', (s.fontScale || 100) / 100);
+
+        var isMobile = window.matchMedia('(max-width: 860px), (pointer: coarse)').matches;
+        // 兜底：如果模块脚本加载失败，3 秒后强制显示所有滚动动画元素，避免白屏
+        root.dataset.reveal = 'pending';
+        window.setTimeout(function () {
+          if (root.dataset.reveal === 'pending' && root.dataset.jsReady !== '1') root.dataset.reveal = 'off';
+        }, 3000);
+
+        // 背景图池：只从「当前皮肤 + 当前设备」这一档里挑，换皮肤必定换背景
+        var bySkin = (data.backgrounds || {})[s.skin] || {};
+        var primary = bySkin[isMobile ? 'mobile' : 'pc'] || [];
+        if (!primary.length) primary = bySkin[isMobile ? 'pc' : 'mobile'] || [];
+        var pool = primary.map(function (item) {
+          return typeof item === 'string' ? item : (item && item.url) || '';
+        }).filter(Boolean);
+        var stored = s.bgUrl && pool.indexOf(s.bgUrl) > -1 ? s.bgUrl : '';
+        var url = '';
+        if (!s.bgRandom && stored) {
+          url = stored; // 关掉随机 → 固定使用这张
+        } else if (pool.length) {
+          url = pool[Math.floor(Math.random() * pool.length)];
+          try { localStorage.setItem(data.settingsKey, JSON.stringify(Object.assign(s, { bgUrl: url }))); } catch (e) {}
+        } else {
+          url = stored;
+        }
+        if (url) {
+          root.dataset.hasBg = '1';
+          root.style.setProperty('--bg-image', 'url("' + url + '")');
+        }
+      } catch (error) {
+        root.dataset.skin = 'ba';
+        root.dataset.mode = 'light';
+      }
+    })();
+  </script>
+</head>

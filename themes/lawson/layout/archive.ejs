@@ -1,0 +1,49 @@
+<%
+  const posts = page.posts ? page.posts.toArray() : [];
+  const groups = [];
+  const seen = {};
+  posts.forEach(function (post) {
+    const year = post.date.format('YYYY');
+    if (!seen[year]) {
+      seen[year] = [];
+      groups.push({ year: year, posts: seen[year] });
+    }
+    seen[year].push(post);
+  });
+%>
+<div class="sheet">
+  <section class="section section--archive">
+    <header class="page-head reveal">
+      <p class="eyebrow">Archive</p>
+      <h1 class="page-title">归档</h1>
+      <p class="page-lead">
+        共 <%= posts.length %> 篇文章<%= page.year ? ' · ' + page.year + (page.month ? ' 年 ' + page.month + ' 月' : ' 年') : '' %>
+      </p>
+    </header>
+
+    <div class="timeline">
+      <% groups.forEach(function (group) { %>
+        <section class="timeline__group reveal">
+          <h2 class="timeline__year"><%= group.year %></h2>
+          <ul class="timeline__list">
+            <% group.posts.forEach(function (post) { %>
+              <li class="timeline__item">
+                <time class="timeline__date" datetime="<%= post.date.toISOString() %>"><%= date(post.date, 'MM-DD') %></time>
+                <a class="timeline__title" href="<%= url_for(post.path) %>"><%= post.title %></a>
+                <% if (post.tags && post.tags.length) { %>
+                  <span class="timeline__tags">
+                    <% post.tags.toArray().slice(0, 3).forEach(function (tag) { %><%= tag.name %> <% }); %>
+                  </span>
+                <% } %>
+              </li>
+            <% }); %>
+          </ul>
+        </section>
+      <% }); %>
+    </div>
+
+    <% if ((page.total || 1) > 1) { %>
+      <%- paginator({ prev_text: '上一页', next_text: '下一页', escape: false }) %>
+    <% } %>
+  </section>
+</div>

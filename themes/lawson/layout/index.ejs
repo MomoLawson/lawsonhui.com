@@ -1,0 +1,51 @@
+<%
+  const L = site.lawson;
+  const posts = page.posts ? page.posts.toArray() : [];
+%>
+<%- partial('partials/hero') %>
+
+<div class="sheet">
+  <%- partial('partials/profile') %>
+
+  <section class="section section--posts" id="posts">
+    <header class="section__head reveal">
+      <h2 class="section__title"><%= L.posts.heading %></h2>
+      <a class="section__more" href="<%= url_for('archives/') %>">
+        <span><%= L.posts.more_text %></span>
+        <svg class="icon" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
+      </a>
+    </header>
+
+    <div class="post-grid">
+      <% posts.forEach(function (post, i) { %>
+        <%- partial('partials/post-card', { post: post, index: i }) %>
+      <% }); %>
+      <% if (!posts.length) { %>
+        <p class="empty">还没有文章，去 <code>source/_posts</code> 里写一篇吧。</p>
+      <% } %>
+    </div>
+
+    <% if ((page.total || 1) > 1) { %>
+      <%- paginator({
+        prev_text: '上一页',
+        next_text: '下一页',
+        escape: false
+      }) %>
+    <% } %>
+  </section>
+
+  <section class="section section--outro reveal">
+    <div class="outro card">
+      <div class="outro__text">
+        <h2 class="outro__title">想聊点什么？</h2>
+        <p class="outro__lead">写代码、玩 Minecraft、刷 Blue Archive，或者聊聊 AI Agent，都欢迎来找我。</p>
+      </div>
+      <% if (L.profile.email) { %>
+        <a class="btn btn--primary" href="mailto:<%= L.profile.email %>">
+          <svg class="icon" aria-hidden="true"><use href="#icon-mail"></use></svg>
+          <span>发邮件</span>
+        </a>
+      <% } %>
+    </div>
+  </section>
+</div>

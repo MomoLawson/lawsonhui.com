@@ -1,0 +1,31 @@
+<%
+  const L = site.lawson;
+%>
+<section class="hero" id="hero">
+  <div class="hero__inner">
+    <% L.theme.skins.forEach(function (skin) { %>
+      <p class="hero__eyebrow" data-only-skin="<%= skin.id %>"><%= skin.tagline || skin.name %></p>
+    <% }); %>
+
+    <h1 class="hero__title"><%= L.hero.title %></h1>
+
+    <p class="hero__sub">
+      <span class="hero__type" data-typewriter aria-live="polite"></span><span class="hero__caret" aria-hidden="true"></span>
+    </p>
+
+    <div class="hero__actions">
+      <a class="btn btn--primary" href="#intro">
+        <span>开始阅读</span>
+        <svg class="icon" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
+      </a>
+      <a class="btn btn--glass" href="<%= url_for('about/') %>">关于我</a>
+    </div>
+  </div>
+
+  <a class="hero__scroll" href="#intro">
+    <span><%= L.hero.scroll_hint %></span>
+    <svg class="icon" aria-hidden="true"><use href="#icon-arrow-down"></use></svg>
+  </a>
+
+  <span class="hero__splash" aria-hidden="true">随机背景！</span>
+</section>

@@ -1,0 +1,61 @@
+<%
+  const L = site.lawson;
+  const tags = page.tags ? page.tags.toArray() : [];
+  const categories = page.categories ? page.categories.toArray() : [];
+  const words = strip_html(page.content || '').replace(/\s+/g, '').length;
+  const minutes = Math.max(1, Math.round(words / 350));
+%>
+<div class="sheet sheet--article">
+  <article class="article">
+    <header class="article__head reveal">
+      <nav class="crumbs" aria-label="面包屑">
+        <a href="<%= url_for('/') %>">首页</a>
+        <span aria-hidden="true">/</span>
+        <a href="<%= url_for('archives/') %>">文章</a>
+        <% if (categories.length) { %>
+          <span aria-hidden="true">/</span>
+          <span><%= categories.map(function (item) { return item.name; }).join(' / ') %></span>
+        <% } %>
+      </nav>
+      <h1 class="article__title"><%= page.title %></h1>
+      <div class="article__meta">
+        <time datetime="<%= page.date.toISOString() %>"><%= date(page.date, 'YYYY-MM-DD') %></time>
+        <span aria-hidden="true">·</span>
+        <span><%= minutes %> 分钟阅读</span>
+        <% if (page.updated && page.updated.valueOf() - page.date.valueOf() > 86_400_000) { %>
+          <span aria-hidden="true">·</span>
+          <span>更新于 <%= date(page.updated, 'YYYY-MM-DD') %></span>
+        <% } %>
+      </div>
+    </header>
+
+    <div class="prose article__body reveal">
+      <%- page.content %>
+    </div>
+
+    <footer class="article__foot">
+      <% if (tags.length) { %>
+        <div class="article__tags">
+          <% tags.forEach(function (tag) { %>
+            <a class="tag" href="<%= url_for(tag.path) %>"># <%= tag.name %></a>
+          <% }); %>
+        </div>
+      <% } %>
+
+      <nav class="post-nav" aria-label="上一篇 / 下一篇">
+        <% if (page.prev) { %>
+          <a class="post-nav__item post-nav__item--prev" href="<%= url_for(page.prev.path) %>">
+            <span class="post-nav__label">上一篇</span>
+            <span class="post-nav__title"><%= page.prev.title %></span>
+          </a>
+        <% } %>
+        <% if (page.next) { %>
+          <a class="post-nav__item post-nav__item--next" href="<%= url_for(page.next.path) %>">
+            <span class="post-nav__label">下一篇</span>
+            <span class="post-nav__title"><%= page.next.title %></span>
+          </a>
+        <% } %>
+      </nav>
+    </footer>
+  </article>
+</div>

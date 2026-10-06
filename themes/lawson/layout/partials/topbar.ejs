@@ -1,0 +1,120 @@
+<%
+  const L = site.lawson;
+  const currentPath = String(page.path || '').replace(/index\.html$/, '');
+  const isActive = url => {
+    const target = String(url || '').replace(/^\/+/, '').replace(/index\.html$/, '');
+    if (!target) return currentPath === '' || currentPath === 'index.html';
+    return currentPath.startsWith(target);
+  };
+  const modeOptions = [
+    { value: 'light', icon: 'icon-sun', label: '浅色' },
+    { value: 'dark', icon: 'icon-moon', label: '深色' },
+    { value: 'system', icon: 'icon-monitor', label: '跟随系统' }
+  ];
+%>
+<header class="topbar" id="topbar" data-scrolled="false">
+  <div class="topbar__inner">
+    <a class="topbar__brand" href="<%= url_for('/') %>">
+      <span class="topbar__mark" aria-hidden="true"></span>
+      <span class="topbar__brand-text"><%= L.brand %></span>
+    </a>
+
+    <nav class="topbar__nav" aria-label="主导航">
+      <% L.nav.forEach(function (item) { %>
+        <a class="topbar__link <%= isActive(item.url) ? 'is-active' : '' %>" href="<%= url_for(item.url || '/') %>"><%= item.label %></a>
+      <% }); %>
+    </nav>
+
+    <div class="topbar__controls">
+      <div class="segmented" role="group" aria-label="主题皮肤">
+        <span class="segmented__glider" aria-hidden="true"></span>
+        <% L.theme.skins.forEach(function (skin, index) { %>
+          <button class="segmented__item" type="button" data-skin-option="<%= skin.id %>" data-index="<%= index %>" title="<%= skin.name %><%= skin.tagline ? ' · ' + skin.tagline : '' %>" aria-pressed="false">
+            <span class="segmented__short"><%= skin.short %></span>
+            <span class="segmented__name"><%= skin.name %></span>
+          </button>
+        <% }); %>
+      </div>
+
+      <% if (theme.search.enabled !== false) { %>
+        <button class="icon-btn" type="button" data-action="search" aria-label="搜索" title="搜索 ⌘K">
+          <svg class="icon" aria-hidden="true"><use href="#icon-search"></use></svg>
+        </button>
+      <% } %>
+
+      <div class="anchor">
+        <button class="icon-btn" type="button" data-action="mode-menu" aria-haspopup="true" aria-expanded="false" aria-label="深浅模式" title="深浅模式">
+          <svg class="icon" data-mode-icon aria-hidden="true"><use href="#icon-monitor"></use></svg>
+        </button>
+        <div class="popover" data-popover="mode" hidden>
+          <% modeOptions.forEach(function (option) { %>
+            <button class="popover__item" type="button" role="menuitemradio" aria-checked="false" data-control="radio" data-setting="mode" data-value="<%= option.value %>">
+              <svg class="icon" aria-hidden="true"><use href="#<%= option.icon %>"></use></svg>
+              <span><%= option.label %></span>
+              <svg class="icon popover__check" aria-hidden="true"><use href="#icon-check"></use></svg>
+            </button>
+          <% }); %>
+        </div>
+      </div>
+
+      <button class="icon-btn" type="button" data-action="settings" aria-label="设置" title="设置">
+        <svg class="icon" aria-hidden="true"><use href="#icon-sliders"></use></svg>
+      </button>
+
+      <button class="icon-btn icon-btn--mobile" type="button" data-action="mobile-menu" aria-label="菜单" title="菜单">
+        <svg class="icon" aria-hidden="true"><use href="#icon-menu"></use></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="sheet-menu" data-sheet="menu" hidden>
+  <div class="sheet-menu__panel" role="dialog" aria-modal="true" aria-label="菜单">
+    <div class="sheet-menu__head">
+      <span class="sheet-menu__title"><%= L.brand %></span>
+      <button class="icon-btn" type="button" data-action="close-sheet" aria-label="关闭">
+        <svg class="icon" aria-hidden="true"><use href="#icon-close"></use></svg>
+      </button>
+    </div>
+    <nav class="sheet-menu__nav" aria-label="移动端导航">
+      <% L.nav.forEach(function (item) { %>
+        <a class="sheet-menu__link <%= isActive(item.url) ? 'is-active' : '' %>" href="<%= url_for(item.url || '/') %>">
+          <span><%= item.label %></span>
+          <svg class="icon" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
+        </a>
+      <% }); %>
+      <% if (theme.search.enabled !== false) { %>
+        <button class="sheet-menu__link" type="button" data-action="search">
+          <span>搜索</span>
+          <svg class="icon" aria-hidden="true"><use href="#icon-search"></use></svg>
+        </button>
+      <% } %>
+    </nav>
+    <div class="sheet-menu__block">
+      <span class="field__label">深浅模式</span>
+      <div class="choices">
+        <% modeOptions.forEach(function (option) { %>
+          <button class="choice" type="button" data-control="radio" data-setting="mode" data-value="<%= option.value %>">
+            <svg class="icon" aria-hidden="true"><use href="#<%= option.icon %>"></use></svg>
+            <span><%= option.label %></span>
+          </button>
+        <% }); %>
+      </div>
+    </div>
+    <div class="sheet-menu__block">
+      <span class="field__label">主题皮肤</span>
+      <div class="choices">
+        <% L.theme.skins.forEach(function (skin) { %>
+          <button class="choice" type="button" data-control="radio" data-setting="skin" data-value="<%= skin.id %>">
+            <span class="choice__badge"><%= skin.short %></span>
+            <span><%= skin.name %></span>
+          </button>
+        <% }); %>
+      </div>
+    </div>
+    <a class="btn btn--ghost sheet-menu__settings" href="<%= url_for('settings/') %>">
+      <svg class="icon" aria-hidden="true"><use href="#icon-sliders"></use></svg>
+      <span><%= L.settings.title %></span>
+    </a>
+  </div>
+</div>

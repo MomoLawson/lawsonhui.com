@@ -1,0 +1,17 @@
+<div class="sheet">
+  <section class="section section--settings">
+    <header class="page-head reveal">
+      <p class="eyebrow">Preferences</p>
+      <h1 class="page-title"><%= page.title || site.lawson.settings.title %></h1>
+      <p class="page-lead"><%= site.lawson.settings.note %></p>
+    </header>
+
+    <div class="settings-card card reveal">
+      <%- partial('partials/settings-controls') %>
+    </div>
+
+    <% if (page.content && strip_html(page.content).trim()) { %>
+      <div class="prose settings-note reveal"><%- page.content %></div>
+    <% } %>
+  </section>
+</div>

@@ -1,0 +1,27 @@
+<%
+  const L = site.lawson;
+  const year = new Date().getFullYear();
+  const since = L.footer.since || year;
+%>
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__brand">
+      <span class="topbar__mark" aria-hidden="true"></span>
+      <span><%= L.brand %></span>
+    </div>
+    <p class="footer__meta">
+      © <%= since %><%= since !== year ? '–' + year : '' %> <%= L.profile.name || config.author %>
+      <% if (L.footer.icp) { %> · <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener"><%= L.footer.icp %></a><% } %>
+    </p>
+    <% if (L.footer.text) { %><p class="footer__text"><%= L.footer.text %></p><% } %>
+    <div class="footer__links">
+      <a href="<%= url_for('archives/') %>">归档</a>
+      <a href="<%= url_for('tags/') %>">标签</a>
+      <a href="<%= url_for('atom.xml') %>">RSS</a>
+      <a href="<%= url_for('settings/') %>">设置</a>
+    </div>
+    <% if (L.footer.powered_by !== false) { %>
+      <p class="footer__powered">Built with <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> · 主题 lawson · 图床 <a href="https://imgbb.com/" target="_blank" rel="noopener">ImgBB</a></p>
+    <% } %>
+  </div>
+</footer>

@@ -1,0 +1,12 @@
+<div class="sheet">
+  <article class="article article--page">
+    <header class="article__head reveal">
+      <p class="eyebrow"><%= page.subtitle || '' %></p>
+      <h1 class="article__title"><%= page.title %></h1>
+      <% if (page.description) { %><p class="article__lead"><%= page.description %></p><% } %>
+    </header>
+    <div class="prose article__body reveal">
+      <%- page.content %>
+    </div>
+  </article>
+</div>

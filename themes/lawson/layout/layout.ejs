@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="<%= config.language || 'zh-CN' %>" data-page="<%= page.layout || 'index' %>">
+<%- partial('partials/head') %>
+<body class="layout-<%= page.layout || 'index' %>">
+  <div class="bg" aria-hidden="true">
+    <div class="bg__img"></div>
+    <div class="bg__scrim"></div>
+    <div class="bg__grain"></div>
+  </div>
+
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <%- partial('partials/icons') %>
+  <%- partial('partials/topbar') %>
+
+  <main class="main" id="main">
+    <%- body %>
+  </main>
+
+  <%- partial('partials/footer') %>
+  <%- partial('partials/search-overlay') %>
+  <%- partial('partials/settings-panel') %>
+
+  <button class="to-top" type="button" data-action="to-top" aria-label="回到顶部" hidden>
+    <svg class="icon" aria-hidden="true"><use href="#icon-arrow-down"></use></svg>
+  </button>
+
+  <script type="module" src="<%= url_for('js/app.js') %>"></script>
+</body>
+</html>

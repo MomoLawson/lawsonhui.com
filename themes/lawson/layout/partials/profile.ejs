@@ -1,0 +1,74 @@
+<%
+  const L = site.lawson;
+  const IMG = site.imgindex || {};
+  const avatar = IMG.avatar;
+  const brandIcons = ['bilibili', 'youtube', 'douyin', 'tiktok', 'x', 'github', 'qq', 'telegram', 'discord', 'steam', 'weibo'];
+  const groupIcons = { game: 'icon-game', code: 'icon-code', agent: 'icon-sparkles' };
+  const links = (L.links || []).map(function (item) {
+    const link = Object.assign({}, item);
+    if (link.icon === 'mail' && !link.url && L.profile.email) link.url = 'mailto:' + L.profile.email;
+    if (link.url && !/^(https?:|mailto:|#|\/)/.test(link.url)) link.url = url_for(link.url);
+    return link;
+  }).filter(function (item) { return item.url; });
+%>
+<section class="section section--profile" id="intro">
+  <div class="profile card card--glass reveal">
+    <div class="profile__top">
+      <div class="profile__avatar-wrap">
+        <span class="profile__halo" aria-hidden="true"></span>
+        <% if (avatar) { %>
+          <img class="profile__avatar" src="<%= avatar.thumb || avatar.url %>" alt="<%= L.profile.name %> 的头像" width="120" height="120" loading="lazy" decoding="async">
+        <% } else { %>
+          <span class="profile__avatar profile__avatar--empty" aria-hidden="true"></span>
+        <% } %>
+      </div>
+
+      <div class="profile__id">
+        <p class="eyebrow"><%= L.profile.title %></p>
+        <h2 class="profile__name"><%= L.profile.name %></h2>
+        <% if (L.profile.email) { %>
+          <a class="profile__email" href="mailto:<%= L.profile.email %>">
+            <svg class="icon" aria-hidden="true"><use href="#icon-mail"></use></svg>
+            <span><%= L.profile.email %></span>
+          </a>
+        <% } %>
+      </div>
+    </div>
+
+    <div class="profile__groups">
+      <% (L.profile.groups || []).forEach(function (group) { %>
+        <div class="group">
+          <div class="group__label">
+            <svg class="icon" aria-hidden="true"><use href="#<%= groupIcons[group.icon] || 'icon-link' %>"></use></svg>
+            <span><%= group.label %></span>
+          </div>
+          <ul class="chips">
+            <% (group.items || []).forEach(function (item) { %>
+              <li class="chip"><%= item %></li>
+            <% }); %>
+          </ul>
+        </div>
+      <% }); %>
+    </div>
+
+    <% if (links.length) { %>
+      <div class="profile__links">
+        <span class="field__label">链接</span>
+        <ul class="links">
+          <% links.forEach(function (item) { %>
+            <li>
+              <a class="link-pill" href="<%= item.url %>" target="_blank" rel="noopener" title="<%= item.label %>">
+                <% if (brandIcons.indexOf(item.icon) > -1) { %>
+                  <span class="icon-brand" style="--icon-src:url('<%= url_for('img/social/' + item.icon + '.svg') %>')" aria-hidden="true"></span>
+                <% } else { %>
+                  <svg class="icon" aria-hidden="true"><use href="#icon-<%= item.icon %>"></use></svg>
+                <% } %>
+                <span><%= item.label %></span>
+              </a>
+            </li>
+          <% }); %>
+        </ul>
+      </div>
+    <% } %>
+  </div>
+</section>

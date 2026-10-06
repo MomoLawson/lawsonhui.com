@@ -1,0 +1,140 @@
+<%
+  const L = site.lawson;
+%>
+<div class="settings">
+  <section class="settings__group">
+    <h3 class="settings__title">外观</h3>
+
+    <div class="field">
+      <span class="field__label">主题皮肤<span class="field__hint">顶栏也可以直接切换</span></span>
+      <div class="choices choices--skin">
+        <% L.theme.skins.forEach(function (skin) { %>
+          <button class="choice choice--skin" type="button" data-control="radio" data-setting="skin" data-value="<%= skin.id %>">
+            <span class="choice__badge"><%= skin.short %></span>
+            <span class="choice__text">
+              <span class="choice__name"><%= skin.name %></span>
+              <% if (skin.tagline) { %><span class="choice__tagline"><%= skin.tagline %></span><% } %>
+            </span>
+            <svg class="icon choice__check" aria-hidden="true"><use href="#icon-check"></use></svg>
+          </button>
+        <% }); %>
+      </div>
+    </div>
+
+    <div class="field">
+      <span class="field__label">深浅模式</span>
+      <div class="choices">
+        <button class="choice" type="button" data-control="radio" data-setting="mode" data-value="light">
+          <svg class="icon" aria-hidden="true"><use href="#icon-sun"></use></svg><span>浅色</span>
+        </button>
+        <button class="choice" type="button" data-control="radio" data-setting="mode" data-value="dark">
+          <svg class="icon" aria-hidden="true"><use href="#icon-moon"></use></svg><span>深色</span>
+        </button>
+        <button class="choice" type="button" data-control="radio" data-setting="mode" data-value="system">
+          <svg class="icon" aria-hidden="true"><use href="#icon-monitor"></use></svg><span>跟随系统</span>
+        </button>
+      </div>
+    </div>
+
+    <label class="field field--row">
+      <span class="field__label">界面字号<span class="field__hint">让文字更大一点</span></span>
+      <span class="field__control">
+        <input class="range" type="range" min="90" max="125" step="5" data-control="range" data-setting="fontScale" data-unit="%">
+        <output class="range__output" data-output="fontScale"></output>
+      </span>
+    </label>
+  </section>
+
+  <section class="settings__group">
+    <h3 class="settings__title">背景</h3>
+
+    <label class="field field--row">
+      <span class="field__label">每次刷新随机换一张<span class="field__hint">关掉后固定使用当前这张</span></span>
+      <span class="switch">
+        <input type="checkbox" data-control="toggle" data-setting="bgRandom">
+        <span class="switch__track" aria-hidden="true"><span class="switch__thumb"></span></span>
+      </span>
+    </label>
+
+    <label class="field field--row">
+      <span class="field__label">背景压暗<span class="field__hint">让前景文字更清晰</span></span>
+      <span class="field__control">
+        <input class="range" type="range" min="0" max="70" step="2" data-control="range" data-setting="bgDim" data-unit="%">
+        <output class="range__output" data-output="bgDim"></output>
+      </span>
+    </label>
+
+    <label class="field field--row">
+      <span class="field__label">背景模糊</span>
+      <span class="field__control">
+        <input class="range" type="range" min="0" max="20" step="1" data-control="range" data-setting="bgBlur" data-unit="px">
+        <output class="range__output" data-output="bgBlur"></output>
+      </span>
+    </label>
+
+    <div class="field field--row">
+      <span class="field__label">换一张</span>
+      <button class="btn btn--ghost btn--small" type="button" data-action="new-bg">
+        <svg class="icon" aria-hidden="true"><use href="#icon-refresh"></use></svg>
+        <span>随机背景</span>
+      </button>
+    </div>
+  </section>
+
+  <section class="settings__group">
+    <h3 class="settings__title">动效</h3>
+
+    <label class="field field--row">
+      <span class="field__label">鼠标点击特效<span class="field__hint">BA 皮肤 · ba-click-fx</span></span>
+      <span class="switch">
+        <input type="checkbox" data-control="toggle" data-setting="clickFx">
+        <span class="switch__track" aria-hidden="true"><span class="switch__thumb"></span></span>
+      </span>
+    </label>
+
+    <label class="field field--row field--sub">
+      <span class="field__label">指针常驻拖尾<span class="field__hint">不按下鼠标也显示拖尾</span></span>
+      <span class="switch">
+        <input type="checkbox" data-control="toggle" data-setting="clickFxTrail">
+        <span class="switch__track" aria-hidden="true"><span class="switch__thumb"></span></span>
+      </span>
+    </label>
+
+    <label class="field field--row">
+      <span class="field__label">首屏打字机</span>
+      <span class="switch">
+        <input type="checkbox" data-control="toggle" data-setting="typewriter">
+        <span class="switch__track" aria-hidden="true"><span class="switch__thumb"></span></span>
+      </span>
+    </label>
+
+    <label class="field field--row">
+      <span class="field__label">打字速度<span class="field__hint">数值越小越快</span></span>
+      <span class="field__control">
+        <input class="range" type="range" min="30" max="220" step="5" data-control="range" data-setting="typeSpeed" data-unit="ms">
+        <output class="range__output" data-output="typeSpeed"></output>
+      </span>
+    </label>
+
+    <label class="field field--row">
+      <span class="field__label">减弱动效<span class="field__hint">关闭位移与滚动动画</span></span>
+      <span class="switch">
+        <input type="checkbox" data-control="toggle" data-setting="reduceMotion">
+        <span class="switch__track" aria-hidden="true"><span class="switch__thumb"></span></span>
+      </span>
+    </label>
+  </section>
+
+  <div class="settings__foot">
+    <p class="settings__note">
+      <%= L.settings.note %>
+      <% if (site.imgindex && site.imgindex.stats && site.imgindex.stats.total) { %>
+        <br>本站共 <%= site.imgindex.stats.total %> 张图片，<%= site.imgindex.stats.uploaded %> 张托管在 ImgBB 图床。
+      <% } %>
+    </p>
+    <button class="btn btn--ghost btn--small" type="button" data-action="reset-settings">
+      <svg class="icon" aria-hidden="true"><use href="#icon-refresh"></use></svg>
+      <span><%= L.settings.reset_text %></span>
+    </button>
+  </div>
+</div>

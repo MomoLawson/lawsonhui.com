@@ -1,0 +1,19 @@
+<div class="sheet">
+  <section class="section section--error">
+    <div class="error card reveal">
+      <p class="error__code">404</p>
+      <h1 class="error__title"><%= page.title || '页面走丢了' %></h1>
+      <p class="error__lead"><%= page.description || '这个页面不存在，或者已经被移动到别的地方了。' %></p>
+      <div class="error__actions">
+        <a class="btn btn--primary" href="<%= url_for('/') %>">
+          <svg class="icon" aria-hidden="true"><use href="#icon-home"></use></svg>
+          <span>回到首页</span>
+        </a>
+        <button class="btn btn--glass" type="button" data-action="search">
+          <svg class="icon" aria-hidden="true"><use href="#icon-search"></use></svg>
+          <span>搜索文章</span>
+        </button>
+      </div>
+    </div>
+  </section>
+</div>

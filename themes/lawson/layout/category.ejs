@@ -1,0 +1,37 @@
+<%
+  const posts = page.posts ? page.posts.toArray() : [];
+  const allCategories = site.categories ? site.categories.toArray() : [];
+%>
+<div class="sheet">
+  <section class="section section--taxonomy">
+    <header class="page-head reveal">
+      <p class="eyebrow">Category</p>
+      <h1 class="page-title"><%= page.category ? page.category : '分类' %></h1>
+      <p class="page-lead"><%= page.category ? '共 ' + posts.length + ' 篇相关文章' : '共 ' + allCategories.length + ' 个分类' %></p>
+    </header>
+
+    <% if (!page.category) { %>
+      <ul class="chips chips--large reveal">
+        <% allCategories.forEach(function (category) { %>
+          <li>
+            <a class="chip chip--link" href="<%= url_for(category.path) %>">
+              <span><%= category.name %></span>
+              <span class="chip__count"><%= category.length %></span>
+            </a>
+          </li>
+        <% }); %>
+      </ul>
+    <% } else { %>
+      <ul class="post-list">
+        <% posts.forEach(function (post) { %>
+          <li class="post-list__item reveal">
+            <a class="post-list__link" href="<%= url_for(post.path) %>">
+              <span class="post-list__title"><%= post.title %></span>
+              <time class="post-list__date" datetime="<%= post.date.toISOString() %>"><%= date(post.date, 'YYYY-MM-DD') %></time>
+            </a>
+          </li>
+        <% }); %>
+      </ul>
+    <% } %>
+  </section>
+</div>

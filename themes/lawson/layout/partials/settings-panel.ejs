@@ -1,0 +1,14 @@
+<aside class="panel" data-panel="settings" hidden aria-label="<%= site.lawson.settings.title %>">
+  <div class="panel__scrim" data-action="close-panel"></div>
+  <div class="panel__dialog" role="dialog" aria-modal="true" aria-label="<%= site.lawson.settings.title %>">
+    <header class="panel__head">
+      <h2 class="panel__title"><%= site.lawson.settings.title %></h2>
+      <button class="icon-btn" type="button" data-action="close-panel" aria-label="关闭设置">
+        <svg class="icon" aria-hidden="true"><use href="#icon-close"></use></svg>
+      </button>
+    </header>
+    <div class="panel__content">
+      <%- partial('partials/settings-controls') %>
+    </div>
+  </div>
+</aside>

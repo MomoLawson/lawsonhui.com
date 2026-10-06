@@ -1,0 +1,30 @@
+<%
+  const L = site.lawson;
+  const body = post.excerpt && String(post.excerpt).trim()
+    ? post.excerpt
+    : truncate(strip_html(post.content || ''), { length: L.posts.excerpt_length });
+  const tags = post.tags ? post.tags.toArray() : [];
+  const categories = post.categories ? post.categories.toArray() : [];
+%>
+<article class="card post-card reveal" style="--i:<%= (typeof index === 'number' ? index : 0) %>">
+  <a class="post-card__link" href="<%= url_for(post.path) %>">
+    <div class="post-card__meta">
+      <time datetime="<%= post.date.toISOString() %>"><%= date(post.date, 'YYYY-MM-DD') %></time>
+      <% if (categories.length) { %>
+        <span class="post-card__sep" aria-hidden="true">·</span>
+        <span><%= categories.map(function (item) { return item.name; }).join(' / ') %></span>
+      <% } %>
+    </div>
+    <h3 class="post-card__title"><%= post.title %></h3>
+    <p class="post-card__excerpt"><%- body %></p>
+    <% if (tags.length) { %>
+      <div class="post-card__tags">
+        <% tags.slice(0, 4).forEach(function (tag) { %><span class="tag"># <%= tag.name %></span><% }); %>
+      </div>
+    <% } %>
+    <span class="post-card__more">
+      <span>阅读全文</span>
+      <svg class="icon" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
+    </span>
+  </a>
+</article>

@@ -1,0 +1,21 @@
+<% if (theme.search.enabled !== false) { %>
+<div class="search" data-overlay="search" hidden>
+  <div class="search__scrim" data-action="close-search"></div>
+  <div class="search__dialog" role="dialog" aria-modal="true" aria-label="搜索">
+    <div class="search__field">
+      <svg class="icon" aria-hidden="true"><use href="#icon-search"></use></svg>
+      <input class="search__input" type="search" data-search-input placeholder="<%= theme.search.placeholder %>" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="搜索关键词">
+      <button class="icon-btn icon-btn--small" type="button" data-action="close-search" aria-label="关闭搜索">
+        <svg class="icon" aria-hidden="true"><use href="#icon-close"></use></svg>
+      </button>
+    </div>
+    <div class="search__results" data-search-results>
+      <p class="search__hint">输入关键词开始搜索，支持标题、标签与正文。</p>
+    </div>
+    <div class="search__footer">
+      <span data-search-status>共 <%= site.posts.length %> 篇文章</span>
+      <span class="search__keys"><kbd>↑</kbd><kbd>↓</kbd> 选择 · <kbd>↵</kbd> 打开 · <kbd>esc</kbd> 关闭</span>
+    </div>
+  </div>
+</div>
+<% } %>
