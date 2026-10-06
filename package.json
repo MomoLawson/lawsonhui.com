@@ -1,0 +1,36 @@
+{
+  "name": "lawsonhui-blog",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Lawson_Hui 的个人博客 · Hexo 静态站点（theme_ba / theme_mc 双主题）",
+  "hexo": {
+    "version": "8.1.2"
+  },
+  "scripts": {
+    "clean": "hexo clean",
+    "images": "node tools/upload-images.mjs",
+    "images:dry": "node tools/upload-images.mjs --dry-run",
+    "build": "node tools/upload-images.mjs && hexo generate",
+    "build:offline": "hexo generate",
+    "dev": "node tools/upload-images.mjs --no-fail && hexo server",
+    "server": "hexo server",
+    "publish": "./publish.sh",
+    "deploy:pages": "node tools/deploy-pages.mjs",
+    "verify": "node tools/verify-images.mjs"
+  },
+  "dependencies": {
+    "hexo": "^8.1.2",
+    "hexo-generator-archive": "^2.0.0",
+    "hexo-generator-category": "^2.0.0",
+    "hexo-generator-feed": "^4.0.0",
+    "hexo-generator-index": "^4.0.0",
+    "hexo-generator-sitemap": "^3.0.1",
+    "hexo-generator-tag": "^2.0.0",
+    "hexo-renderer-ejs": "^2.0.0",
+    "hexo-renderer-marked": "^7.0.1",
+    "hexo-server": "^3.0.0"
+  },
+  "devDependencies": {
+    "undici": "^7.30.0"
+  }
+}

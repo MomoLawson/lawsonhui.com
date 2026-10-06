@@ -1,0 +1,47 @@
+# ==========================================================================
+# 主题 lawson —— 皮肤样式层面的默认值
+# （内容与开关请改站点根目录的 _config.yml 中的 lawson: 节点）
+# ==========================================================================
+
+# 双皮肤：ba = 蔚蓝档案风格，mc = Minecraft 官网风格
+# 两套皮肤共用同一批组件，用 data-skin 切换设计语言
+skins:
+  ba:
+    label: BA
+    font_display: '"SF Pro Display", -apple-system, "PingFang SC", "Noto Sans SC", sans-serif'
+    radius: 26px
+    material: true
+  mc:
+    label: MC
+    font_display: '"Pixelify Sans", "SF Pro Display", -apple-system, "PingFang SC", monospace'
+    radius: 6px
+    material: false
+
+# 皮肤相关的外部资源（可自行替换成自托管地址）
+assets:
+  ba_click_fx: "https://cdn.jsdelivr.net/npm/ba-click-fx@1.3.8/dist/ba-click-fx.js"
+  ba_click_fx_fallback:
+    - "https://unpkg.com/ba-click-fx@1.3.8/dist/ba-click-fx.js"
+    - "https://cdn.jsdelivr.net/npm/ba-click-fx@1.3.8/dist/ba-click-fx.js"
+  mc_font_css: "https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap"
+
+# 顶栏行为
+topbar:
+  blend_offset: 24          # 滚动多少像素后与背景分离
+  show_nav_on_mobile: true
+
+# 动效
+motion:
+  ease: "cubic-bezier(0.32, 0.72, 0, 1)"
+  duration: 420
+
+# 搜索
+search:
+  enabled: true
+  hotkey: "k"
+  placeholder: 搜索文章、标签或关键词…
+  limit: 12
+  empty_text: 没有找到匹配的内容
+
+# 代码高亮配色跟随深浅模式自动切换，无需额外配置
+highlight_theme: auto

@@ -1,0 +1,262 @@
+# ==========================================================================
+# Hexo 主配置（站点 + 博客内容）
+#   站点基础信息
+#   渲染 / 生成器设置
+#   lawson: 节点 —— 博客内容与主题开关（改这里就够了）
+# 主题皮肤层面的细节在 themes/lawson/_config.yml
+# ==========================================================================
+
+# ---------------------------- 站点 ----------------------------
+title: Lawson_Hui的博客
+subtitle: "记录代码、游戏与日常"
+description: Lawson_Hui 的个人博客 —— Python / Java、Minecraft、Blue Archive 与 AI Agent 的折腾记录。
+keywords:
+  - Lawson_Hui
+  - 博客
+  - Python
+  - Java
+  - Minecraft
+  - Blue Archive
+  - AI Agent
+author: Lawson_Hui
+language: zh-CN
+timezone: Asia/Shanghai
+
+# ---------------------------- 网址 ----------------------------
+url: https://lawsonhui.com
+root: /
+# ---------------------------- 主题 ----------------------------
+theme: lawson
+permalink: :year/:month/:day/:title/
+permalink_defaults:
+pretty_urls:
+  trailing_index: false
+  trailing_html: false
+
+# ---------------------------- 目录 ----------------------------
+source_dir: source
+public_dir: public
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
+code_dir: downloads/code
+i18n_dir: :lang
+skip_render:
+  - "search.json"
+
+# ---------------------------- 写作 ----------------------------
+new_post_name: :year-:month-:day-:title.md
+default_layout: post
+titlecase: false
+external_link:
+  enable: true
+  field: site
+  exclude: ""
+filename_case: 0
+render_drafts: false
+post_asset_folder: false
+relative_link: false
+future: true
+highlight:
+  line_number: true
+  auto_detect: false
+  tab_replace: "  "
+  wrap: true
+  hljs: false
+prismjs:
+  enable: false
+  preprocess: true
+  line_number: true
+  tab_replace: ""
+
+# ---------------------------- 首页 / 归档 ----------------------------
+index_generator:
+  path: ""
+  per_page: 6
+  order_by: -date
+
+archive_generator:
+  enabled: true
+  per_page: 20
+  yearly: true
+  monthly: false
+  order_by: -date
+
+tag_generator:
+  enabled: true
+  per_page: 20
+  order_by: -date
+
+category_generator:
+  enabled: true
+  per_page: 20
+  order_by: -date
+
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+  content: true
+  hub:
+
+sitemap:
+  path: sitemap.xml
+  rel: false
+  tags: true
+  categories: true
+
+# ---------------------------- 服务器 ----------------------------
+server:
+  port: 4000
+  compress: true
+  header: true
+  cache: false
+
+# ---------------------------- 部署 ----------------------------
+# 本项目用 publish.sh / tools/deploy-pages.mjs 发布，不依赖 hexo-deployer-git
+deploy:
+  type: ""
+
+# ==========================================================================
+#                          博客内容配置
+#         以下所有内容都可以直接改，改完重新构建即可生效。
+# ==========================================================================
+lawson:
+  # 顶栏左侧标题
+  brand: Lawson_Hui的博客
+
+  # 首屏 Hero
+  hero:
+    title: Lawson_Hui的个人博客
+    subtitle: 占位文本 · 正在输入
+    typewriter:
+      enabled: true
+      speed: 95            # 每个字符的毫秒数
+      pause: 1800          # 一句打完后的停顿（毫秒）
+      phrases:             # 打字机循环播放的占位句子
+        - "占位文本：正在输入……"
+        - "Python / Java 记录与折腾"
+        - "Minecraft 与 Blue Archive 玩家"
+        - "把 Claude Code、Codex 当作同事"
+        - "这里会写下我的想法与笔记"
+    scroll_hint: 向下滚动
+
+  # 头像（相对仓库根目录的路径）
+  avatar: img/personal_img/bf4c3759123c6a8a93e6a48a8d4fbbf6.JPG
+
+  # 介绍页
+  profile:
+    title: 介绍
+    name: Lawson_Hui
+    email: momocha2011@outlook.com
+    groups:
+      - label: 游戏
+        icon: game
+        items:
+          - Minecraft
+          - Blue Archive
+      - label: 编程语言
+        icon: code
+        items:
+          - Python
+          - Java
+      - label: Agent
+        icon: agent
+        items:
+          - Claude Code
+          - Codex
+          - Pi
+          - Grok Build
+          - DeepSeek Harness
+          - WorkBuddy
+          - OpenCode
+
+  # 社交链接：url 留空（''）的条目不会显示在页面上
+  links:
+    - icon: bilibili
+      label: Bilibili
+      url: ""
+    - icon: youtube
+      label: YouTube
+      url: ""
+    - icon: douyin
+      label: 抖音
+      url: ""
+    - icon: tiktok
+      label: TikTok
+      url: ""
+    - icon: x
+      label: X
+      url: ""
+    - icon: github
+      label: GitHub
+      url: ""
+    - icon: qq
+      label: QQ
+      url: ""
+    - icon: telegram
+      label: Telegram
+      url: ""
+    - icon: discord
+      label: Discord
+      url: ""
+    - icon: mail
+      label: 邮箱
+      url: ""                     # 留空时自动使用上面的 profile.email
+    - icon: rss
+      label: RSS
+      url: atom.xml
+
+  # 顶栏导航（theme 皮肤切换 / 搜索 / 深浅 / 设置 会自动附加在右侧）
+  nav:
+    - label: 首页
+      url: ""
+    - label: 文章
+      url: archives/
+    - label: 关于
+      url: about/
+
+  # 皮肤（主题）设置
+  theme:
+    default: ba               # ba | mc
+    click_fx: true            # BA 皮肤的鼠标点击特效（ba-click-fx），可在设置里关闭
+    skins:
+      - id: ba
+        short: BA
+        name: Blue Archive
+        tagline: 蔚蓝档案 · 光环之上
+      - id: mc
+        short: MC
+        name: Minecraft
+        tagline: 我的世界 · 方块之下
+
+  # 背景图设置（后台随机选图，可在设置面板中调整）
+  background:
+    random: true              # 每次刷新随机换一张
+    dim: 34                   # 背景压暗程度 0-80
+    blur: 0                   # 背景模糊 0-24 (px)
+    ba:
+      pc: img/bg_img/theme_ba/pc
+      mobile: img/bg_img/theme_ba/mobile
+    mc:
+      pc: img/bg_img/theme_mc/pc
+      mobile: img/bg_img/theme_mc/mobile
+
+  # 首页文章区
+  posts:
+    heading: 文章
+    more_text: 查看全部
+    excerpt_length: 150
+
+  # 设置面板 / 设置页
+  settings:
+    title: 设置
+    reset_text: 恢复默认
+    note: 所有设置都保存在这台设备的浏览器里（localStorage），不会上传到服务器。
+
+  # 页脚
+  footer:
+    since: 2025
+    text: ""
+    icp: ""
+    powered_by: true
