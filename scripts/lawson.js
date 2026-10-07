@@ -50,6 +50,36 @@ function readRoute(routePath) {
   });
 }
 
+function readRouteBuffer(routePath) {
+  return new Promise((resolve, reject) => {
+    const stream = hexo.route.get(routePath);
+    if (!stream) return resolve(null);
+    const chunks = [];
+    stream.on('data', chunk => chunks.push(Buffer.from(chunk)));
+    stream.on('end', () => resolve(Buffer.concat(chunks)));
+    stream.on('error', reject);
+  });
+}
+
+// 字体文件是要靠扩展名被 CDN 缓存的（.woff2 在 Cloudflare 的默认缓存名单里，
+// 一存就是几小时），而 CSS 里引用的是固定路径：换了 splash 文案、重裁了子集，
+// 访客可能还是拿到旧字体甚至缓存的 404。这里按文件内容补一个 ?h=xxxxxxxx，
+// 内容一变 URL 就变，缓存自然绕过（新版 URL 也不会撞上历史 404）。
+async function stampCssFonts(css) {
+  const names = new Set();
+  const pattern = /\.\.\/fonts\/([^"')\s]+)/g;
+  let match;
+  while ((match = pattern.exec(css))) names.add(match[1]);
+
+  for (const name of names) {
+    const buffer = await readRouteBuffer('fonts/' + name);
+    if (!buffer) continue;
+    const digest = crypto.createHash('sha256').update(buffer).digest('hex').slice(0, 8);
+    css = css.split('../fonts/' + name).join('../fonts/' + name + '?h=' + digest);
+  }
+  return css;
+}
+
 // 静态资源加内容指纹：Cloudflare 和浏览器会把 css/js 缓存几个小时，
 // 文件名不变的话改样式后看到的就是旧文件，这里按内容生成 ?v=xxxxxxxx。
 async function stampAssetVersion() {
@@ -60,8 +90,15 @@ async function stampAssetVersion() {
   const assets = {};
   const hash = crypto.createHash('sha256');
   for (const routePath of assetRoutes) {
-    const content = await readRoute(routePath);
+    let content = await readRoute(routePath);
     if (content === null) continue;
+    if (routePath.endsWith('.css')) {
+      const stamped = await stampCssFonts(content);
+      if (stamped !== content) {
+        content = stamped;
+        hexo.route.set(routePath, content);
+      }
+    }
     assets[routePath] = content;
     hash.update(routePath);
     hash.update(content);
