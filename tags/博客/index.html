@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page="index">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Lawson_Hui的博客</title>
+  <meta name="description" content="Lawson_Hui 的个人博客 —— Python / Java、Minecraft、Blue Archive 与 AI Agent 的折腾记录。">
+  <meta name="author" content="Lawson_Hui">
+  <link rel="canonical" href="https://lawsonhui.com/tags/%E5%8D%9A%E5%AE%A2/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Lawson_Hui的博客">
+  <meta property="og:description" content="Lawson_Hui 的个人博客 —— Python / Java、Minecraft、Blue Archive 与 AI Agent 的折腾记录。">
+  <meta property="og:url" content="https://lawsonhui.com/tags/%E5%8D%9A%E5%AE%A2/">
+  <meta property="og:image" content="https://i.ibb.co/G4Jsgz8R/bf4c3759123c6a8a93e6a48a8d4fbbf6.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#0b0d12" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f4f4f6" media="(prefers-color-scheme: light)">
+
+  <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+  <link rel="alternate" href="/atom.xml" type="application/atom+xml" title="Lawson_Hui的博客">
+  <link rel="preconnect" href="https://i.ibb.co" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&amp;display=swap" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="/css/lawson.css?v=3cbb48d67c">
+
+  <script id="lawson-data" type="application/json">{"settingsKey":"lawson:settings:v1","defaults":{"skin":"ba","mode":"system","bgRandom":true,"bgDim":34,"bgBlur":0,"bgUrl":"","clickFx":true,"clickFxTrail":false,"typewriter":true,"typeSpeed":95,"reduceMotion":false,"fontScale":100},"backgrounds":{"ba":{"pc":[{"path":"img/bg_img/theme_ba/pc/139649.webp","url":"https://i.ibb.co/byP3FWy/139649.webp","thumb":"https://i.ibb.co/TnkT1vn/139649.webp","width":2560,"height":1440,"uploaded":true},{"path":"img/bg_img/theme_ba/pc/151665.webp","url":"https://i.ibb.co/JFv2xLtW/151665.webp","thumb":"https://i.ibb.co/CsbvJd8p/151665.webp","width":2560,"height":1440,"uploaded":true},{"path":"img/bg_img/theme_ba/pc/184992.webp","url":"https://i.ibb.co/Cpsh9WHz/184992.webp","thumb":"https://i.ibb.co/9m3s4GrN/184992.webp","width":2560,"height":1440,"uploaded":true},{"path":"img/bg_img/theme_ba/pc/201747.webp","url":"https://i.ibb.co/x8jGTZzF/201747.webp","thumb":"https://i.ibb.co/gFTwKYt4/201747.webp","width":2560,"height":1440,"uploaded":true},{"path":"img/bg_img/theme_ba/pc/355983.webp","url":"https://i.ibb.co/kV51YwsZ/355983.webp","thumb":"https://i.ibb.co/LDY54cXK/355983.webp","width":2560,"height":1440,"uploaded":true},{"path":"img/bg_img/theme_ba/pc/425673.webp","url":"https://i.ibb.co/C5Cybnx7/425673.webp","thumb":"https://i.ibb.co/fY6WkCmp/425673.webp","width":2560,"height":1440,"uploaded":true},{"path":"img/bg_img/theme_ba/pc/530631.webp","url":"https://i.ibb.co/ymmL7KTY/530631.webp","thumb":"https://i.ibb.co/j997sqKW/530631.webp","width":2560,"height":1440,"uploaded":true},{"path":"img/bg_img/theme_ba/pc/5e6h5ml67x961.jpg","url":"https://i.ibb.co/5WmKSRfm/5e6h5ml67x961.jpg","thumb":"https://i.ibb.co/mCkN2cMk/5e6h5ml67x961.jpg","width":1920,"height":1080,"uploaded":true},{"path":"img/bg_img/theme_ba/pc/610809.webp","url":"https://i.ibb.co/0yCmrJs0/610809.webp","thumb":"https://i.ibb.co/Kx2bWyKt/610809.webp","width":2560,"height":1440,"uploaded":true},{"path":"img/bg_img/theme_ba/pc/89577.webp","url":"https://i.ibb.co/Q3KGmRyk/89577.webp","thumb":"https://i.ibb.co/Txg5hS91/89577.webp","width":2560,"height":1440,"uploaded":true},{"path":"img/bg_img/theme_ba/pc/934016.webp","url":"https://i.ibb.co/rG21WWY0/934016.webp","thumb":"https://i.ibb.co/MDk3XXrS/934016.webp","width":2560,"height":1440,"uploaded":true},{"path":"img/bg_img/theme_ba/pc/947668.webp","url":"https://i.ibb.co/GQ7vnQYd/947668.webp","thumb":"https://i.ibb.co/HT7DBTwK/947668.webp","width":2560,"height":1440,"uploaded":true},{"path":"img/bg_img/theme_ba/pc/949156.webp","url":"https://i.ibb.co/QFr4Cb00/949156.webp","thumb":"https://i.ibb.co/MDMmG2dd/949156.webp","width":2560,"height":1440,"uploaded":true},{"path":"img/bg_img/theme_ba/pc/977111.webp","url":"https://i.ibb.co/hxdyS4Hd/977111.webp","thumb":"https://i.ibb.co/Y4d3x18d/977111.webp","width":2560,"height":1440,"uploaded":true},{"path":"img/bg_img/theme_ba/pc/v2-5bc8f9f95c0ce4daa34284051fe9bf13_1440w.png","url":"https://i.ibb.co/MzyVNYv/v2-5bc8f9f95c0ce4daa34284051fe9bf13-1440w.png","thumb":"https://i.ibb.co/g0bTg52/v2-5bc8f9f95c0ce4daa34284051fe9bf13-1440w.png","width":1440,"height":810,"uploaded":true},{"path":"img/bg_img/theme_ba/pc/v2-85ed8bed82356bc42302df4685eb4667_1440w.jpg","url":"https://i.ibb.co/fdFTbyzL/v2-85ed8bed82356bc42302df4685eb4667-1440w.jpg","thumb":"https://i.ibb.co/whg2TPFj/v2-85ed8bed82356bc42302df4685eb4667-1440w.jpg","width":1440,"height":810,"uploaded":true},{"path":"img/bg_img/theme_ba/pc/v2-9ace9b7fc6f8042005a013f0e9194f1c_1440w.png","url":"https://i.ibb.co/1JKJr7PX/v2-9ace9b7fc6f8042005a013f0e9194f1c-1440w.png","thumb":"https://i.ibb.co/wrCrSBPQ/v2-9ace9b7fc6f8042005a013f0e9194f1c-1440w.png","width":1440,"height":671,"uploaded":true},{"path":"img/bg_img/theme_ba/pc/v2-af5023fa34fafe1f7f7b74359acbbcc9_1440w.jpg","url":"https://i.ibb.co/CK91sB1V/v2-af5023fa34fafe1f7f7b74359acbbcc9-1440w.jpg","thumb":"https://i.ibb.co/Swms7NsV/v2-af5023fa34fafe1f7f7b74359acbbcc9-1440w.jpg","width":1440,"height":806,"uploaded":true},{"path":"img/bg_img/theme_ba/pc/v2-c31f26c3f2cf4025bab20c670c76a85d_1440w.jpg","url":"https://i.ibb.co/mFBZtq90/v2-c31f26c3f2cf4025bab20c670c76a85d-1440w.jpg","thumb":"https://i.ibb.co/rft8M6x3/v2-c31f26c3f2cf4025bab20c670c76a85d-1440w.jpg","width":1440,"height":810,"uploaded":true},{"path":"img/bg_img/theme_ba/pc/v2-e6d49f0334c529f5dffe46a687edeb59_1440w.webp","url":"https://i.ibb.co/5hyzrYzg/v2-e6d49f0334c529f5dffe46a687edeb59-1440w.webp","thumb":"https://i.ibb.co/qYf4N043/v2-e6d49f0334c529f5dffe46a687edeb59-1440w.webp","width":1440,"height":1012,"uploaded":true},{"path":"img/bg_img/theme_ba/pc/v2-f64bb551a98df4320fd2f8f5c42f6595_1440w.jpg","url":"https://i.ibb.co/BHtwRX0F/v2-f64bb551a98df4320fd2f8f5c42f6595-1440w.jpg","thumb":"https://i.ibb.co/fV2Q7hjL/v2-f64bb551a98df4320fd2f8f5c42f6595-1440w.jpg","width":1440,"height":720,"uploaded":true},{"path":"img/bg_img/theme_ba/pc/Wallpaper Alchemy - 白子·砂狼啦啦队体育场壁纸.jpeg","url":"https://i.ibb.co/Q3YTvKqj/Wallpaper-Alchemy.jpg","thumb":"https://i.ibb.co/jP3QkrxZ/Wallpaper-Alchemy.jpg","width":3400,"height":2600,"uploaded":true},{"path":"img/bg_img/theme_ba/pc/Wallpaper Alchemy - 白子蓝天动漫壁纸.jpeg","url":"https://i.ibb.co/fYp0cyzb/Wallpaper-Alchemy.jpg","thumb":"https://i.ibb.co/pvzXmMBg/Wallpaper-Alchemy.jpg","width":3840,"height":2152,"uploaded":true},{"path":"img/bg_img/theme_ba/pc/Wallpaper Alchemy - 赛巴桃井 蔚蓝档案 4K 动漫壁纸.jpeg","url":"https://i.ibb.co/pjQ1mX4J/Wallpaper-Alchemy-4-K.jpg","thumb":"https://i.ibb.co/qYCDZ1mk/Wallpaper-Alchemy-4-K.jpg","width":4093,"height":2894,"uploaded":true},{"path":"img/bg_img/theme_ba/pc/Wallpaper Alchemy - 砂狼白子 蔚蓝档案 4K壁纸.jpeg","url":"https://i.ibb.co/k6rfy9p1/Wallpaper-Alchemy-4-K.jpg","thumb":"https://i.ibb.co/5xzy9ndF/Wallpaper-Alchemy-4-K.jpg","width":2250,"height":3378,"uploaded":true},{"path":"img/bg_img/theme_ba/pc/Wallpaper Alchemy - 砂狼白子 Blue Archive 4K壁纸.jpeg","url":"https://i.ibb.co/21MbySB4/Wallpaper-Alchemy-Blue-Archive-4-K.jpg","thumb":"https://i.ibb.co/7dp9XQFm/Wallpaper-Alchemy-Blue-Archive-4-K.jpg","width":2208,"height":3924,"uploaded":true},{"path":"img/bg_img/theme_ba/pc/Wallpaper Alchemy - 蔚蓝档案 4K 壁纸 – 砂狼白子、小鸟游星野、十六夜野乃美、黑见芹香 & 奥空绫音.jpeg","url":"https://i.ibb.co/ccBgby4c/Wallpaper-Alchemy-4-K.jpg","thumb":"https://i.ibb.co/1fgvs0Ff/Wallpaper-Alchemy-4-K.jpg","width":3352,"height":2358,"uploaded":true},{"path":"img/bg_img/theme_ba/pc/Wallpaper Alchemy - 蔚蓝档案 4K 壁纸 – 砂狼白子、小鸟游星野、十六夜野乃美、黑见芹香 & 奥空绫音在拉面店.jpeg","url":"https://i.ibb.co/dwSXSwnk/Wallpaper-Alchemy-4-K.jpg","thumb":"https://i.ibb.co/5gdCdgqs/Wallpaper-Alchemy-4-K.jpg","width":4096,"height":2878,"uploaded":true},{"path":"img/bg_img/theme_ba/pc/Wallpaper Alchemy - 蔚蓝档案 4K 壁纸 – 砂狼白子、小鸟游星野、十六夜野乃美、黑见世里卡 & 奥空绫音.jpeg","url":"https://i.ibb.co/4R6TJW7D/Wallpaper-Alchemy-4-K.jpg","thumb":"https://i.ibb.co/xqpj3hDc/Wallpaper-Alchemy-4-K.jpg","width":4096,"height":2878,"uploaded":true},{"path":"img/bg_img/theme_ba/pc/Wallpaper Alchemy - 早濑优香 蔚蓝档案 4K壁纸.jpeg","url":"https://i.ibb.co/JWRCD1yC/Wallpaper-Alchemy-4-K.jpg","thumb":"https://i.ibb.co/WNWsmhPs/Wallpaper-Alchemy-4-K.jpg","width":3840,"height":2160,"uploaded":true},{"path":"img/bg_img/theme_ba/pc/Wallpaper Alchemy - 早瀬ユウカ 办公桌壁纸 – 蔚蓝档案.jpeg","url":"https://i.ibb.co/QvnBfbLQ/Wallpaper-Alchemy.jpg","thumb":"https://i.ibb.co/60bhmnzw/Wallpaper-Alchemy.jpg","width":4096,"height":2489,"uploaded":true},{"path":"img/bg_img/theme_ba/pc/Wallpaper Alchemy - Plana 蔚蓝档案 动漫壁纸 海岸.jpeg","url":"https://i.ibb.co/JjH7v10Z/Wallpaper-Alchemy-Plana.jpg","thumb":"https://i.ibb.co/r2H6xjT9/Wallpaper-Alchemy-Plana.jpg","width":5678,"height":3298,"uploaded":true},{"path":"img/bg_img/theme_ba/pc/Wallpaper Alchemy - Shiroko Sunaookami 蔚蓝档案 4K 壁纸.jpeg","url":"https://i.ibb.co/JRDM8ghW/Wallpaper-Alchemy-Shiroko-Sunaookami-4-K.jpg","thumb":"https://i.ibb.co/8D1SGthn/Wallpaper-Alchemy-Shiroko-Sunaookami-4-K.jpg","width":4500,"height":3183,"uploaded":true}],"mobile":[{"path":"img/bg_img/theme_ba/mobile/【哲风壁纸】二次元-制服-双胞胎.jpg","url":"https://i.ibb.co/QjMTvQdr/image.jpg","thumb":"https://i.ibb.co/DgQvfWp5/image.jpg","width":2508,"height":3541,"uploaded":true},{"path":"img/bg_img/theme_ba/mobile/【哲风壁纸】光环-午睡.jpg","url":"https://i.ibb.co/35ZXyDQT/image.jpg","thumb":"https://i.ibb.co/KcvZjMS5/image.jpg","width":6616,"height":9356,"uploaded":true},{"path":"img/bg_img/theme_ba/mobile/【哲风壁纸】双子-女仆装-小桃.jpg","url":"https://i.ibb.co/tPw99YNS/image.jpg","thumb":"https://i.ibb.co/h1xSS2nk/image.jpg","width":1742,"height":2500,"uploaded":true},{"path":"img/bg_img/theme_ba/mobile/【哲风壁纸】LUORUI-二次元.jpg","url":"https://i.ibb.co/S44mW4Bf/LUORUI.jpg","thumb":"https://i.ibb.co/Jwwp0wH3/LUORUI.jpg","width":1600,"height":2191,"uploaded":true},{"path":"img/bg_img/theme_ba/mobile/153160.webp","url":"https://i.ibb.co/8DvtkrdT/153160.webp","thumb":"https://i.ibb.co/wNGjtSw3/153160.webp","width":1125,"height":2436,"uploaded":true},{"path":"img/bg_img/theme_ba/mobile/16287148326505856.jpeg","url":"https://i.ibb.co/V0g9DcXS/16287148326505856.webp","thumb":"https://i.ibb.co/5Xr4vgq8/16287148326505856.webp","width":778,"height":1100,"uploaded":true},{"path":"img/bg_img/theme_ba/mobile/16370580706282880.jpeg","url":"https://i.ibb.co/m5B1zVcY/16370580706282880.webp","thumb":"https://i.ibb.co/tphkCTJN/16370580706282880.webp","width":556,"height":1100,"uploaded":true},{"path":"img/bg_img/theme_ba/mobile/16370595298594176.jpeg","url":"https://i.ibb.co/rG5SK5XK/16370595298594176.webp","thumb":"https://i.ibb.co/jv3293j9/16370595298594176.webp","width":800,"height":1100,"uploaded":true},{"path":"img/bg_img/theme_ba/mobile/19551836295746432.jpeg","url":"https://i.ibb.co/chRGxsvB/19551836295746432.webp","thumb":"https://i.ibb.co/k2zRMPy7/19551836295746432.webp","width":688,"height":1100,"uploaded":true},{"path":"img/bg_img/theme_ba/mobile/525406.webp","url":"https://i.ibb.co/7tK0JdJR/525406.webp","thumb":"https://i.ibb.co/RTcJpkpB/525406.webp","width":1125,"height":2436,"uploaded":true},{"path":"img/bg_img/theme_ba/mobile/572443.webp","url":"https://i.ibb.co/bgTn5q2V/572443.webp","thumb":"https://i.ibb.co/hRbvFhZN/572443.webp","width":1125,"height":2436,"uploaded":true},{"path":"img/bg_img/theme_ba/mobile/687678.webp","url":"https://i.ibb.co/LDS7D0VP/687678.webp","thumb":"https://i.ibb.co/nqrJqwx0/687678.webp","width":1125,"height":2436,"uploaded":true},{"path":"img/bg_img/theme_ba/mobile/Wallpaper Alchemy - 砂狼白子 蔚蓝档案 4K壁纸 (1).jpeg","url":"https://i.ibb.co/S4nzMPHt/Wallpaper-Alchemy-4-K-1.jpg","thumb":"https://i.ibb.co/bMBkCPYs/Wallpaper-Alchemy-4-K-1.jpg","width":2160,"height":3840,"uploaded":true},{"path":"img/bg_img/theme_ba/mobile/Wallpaper Alchemy - 蔚蓝档案壁纸 – 白子、芹香与星野的城市街景.jpeg","url":"https://i.ibb.co/MkXdrk9b/Wallpaper-Alchemy.jpg","thumb":"https://i.ibb.co/whvtVhYT/Wallpaper-Alchemy.jpg","width":2160,"height":3840,"uploaded":true}]},"mc":{"pc":[{"path":"img/bg_img/theme_mc/pc/春泽_4_original.png","url":"https://i.ibb.co/m5zQQNBZ/4-original.jpg","thumb":"https://i.ibb.co/qY1bbJnq/4-original.jpg","width":2912,"height":1632,"uploaded":true},{"path":"img/bg_img/theme_mc/pc/浮光_1_original.png","url":"https://i.ibb.co/dwfZRV0Q/1-original.jpg","thumb":"https://i.ibb.co/Kp5nJfj9/1-original.jpg","width":2944,"height":1648,"uploaded":true},{"path":"img/bg_img/theme_mc/pc/浮光_3_original.png","url":"https://i.ibb.co/fdDsNFDC/3-original.jpg","thumb":"https://i.ibb.co/MkBm1SBR/3-original.jpg","width":2944,"height":1648,"uploaded":true},{"path":"img/bg_img/theme_mc/pc/浮光_6_original.png","url":"https://i.ibb.co/bMxr5NVZ/6-original.jpg","thumb":"https://i.ibb.co/rRgZ25hS/6-original.jpg","width":2944,"height":1648,"uploaded":true},{"path":"img/bg_img/theme_mc/pc/栖野_3_original.png","url":"https://i.ibb.co/PZTy527r/3-original.jpg","thumb":"https://i.ibb.co/ccb9NWGy/3-original.jpg","width":2912,"height":1632,"uploaded":true},{"path":"img/bg_img/theme_mc/pc/拾光_2_original.png","url":"https://i.ibb.co/0y6jtkMP/2-original.jpg","thumb":"https://i.ibb.co/qYcM5zsb/2-original.jpg","width":2912,"height":1632,"uploaded":true},{"path":"img/bg_img/theme_mc/pc/天色_4_original.png","url":"https://i.ibb.co/BWkwnvM/4-original.jpg","thumb":"https://i.ibb.co/69QNXGC/4-original.jpg","width":2944,"height":1648,"uploaded":true},{"path":"img/bg_img/theme_mc/pc/夏日滨海_2_original.png","url":"https://i.ibb.co/xKrNPpV0/2-original.jpg","thumb":"https://i.ibb.co/rKXVTCnS/2-original.jpg","width":2944,"height":1648,"uploaded":true},{"path":"img/bg_img/theme_mc/pc/雪落_4_original.png","url":"https://i.ibb.co/Kx2tVtKd/4-original.jpg","thumb":"https://i.ibb.co/k24LqLmj/4-original.jpg","width":2912,"height":1632,"uploaded":true},{"path":"img/bg_img/theme_mc/pc/雪落_5_original.png","url":"https://i.ibb.co/99Qx2jv9/5-original.jpg","thumb":"https://i.ibb.co/nsxXfS0s/5-original.jpg","width":2912,"height":1632,"uploaded":true},{"path":"img/bg_img/theme_mc/pc/檐雨_2_original.png","url":"https://i.ibb.co/N2LcYxJb/2-original.jpg","thumb":"https://i.ibb.co/8gj18Mft/2-original.jpg","width":2944,"height":1648,"uploaded":true},{"path":"img/bg_img/theme_mc/pc/檐雨_6_original.png","url":"https://i.ibb.co/zTx99yYh/6-original.jpg","thumb":"https://i.ibb.co/bMmwwSZg/6-original.jpg","width":2944,"height":1648,"uploaded":true},{"path":"img/bg_img/theme_mc/pc/余温_6_original.png","url":"https://i.ibb.co/6JcPnpqL/6-original.jpg","thumb":"https://i.ibb.co/Qj7Nbqxt/6-original.jpg","width":2944,"height":1648,"uploaded":true},{"path":"img/bg_img/theme_mc/pc/渊光_2_original.png","url":"https://i.ibb.co/G47YXk4t/2-original.jpg","thumb":"https://i.ibb.co/fzM6btzn/2-original.jpg","width":2912,"height":1632,"uploaded":true},{"path":"img/bg_img/theme_mc/pc/wallpaper_minecraft_bedrock_edition_800x450.png","url":"https://i.ibb.co/svLB4VXN/wallpaper-minecraft-bedrock-edition-800x450.png","thumb":"https://i.ibb.co/wNDvqz2P/wallpaper-minecraft-bedrock-edition-800x450.png","width":800,"height":450,"uploaded":true},{"path":"img/bg_img/theme_mc/pc/wallpaper_minecraft_java_edition_2560x1440.png","url":"https://i.ibb.co/rRSPcvS3/wallpaper-minecraft-java-edition-2560x1440.png","thumb":"https://i.ibb.co/fz5RnQ59/wallpaper-minecraft-java-edition-2560x1440.png","width":2560,"height":1440,"uploaded":true},{"path":"img/bg_img/theme_mc/pc/wallpaper_minecraft_pc_bundle_2560x1440.png","url":"https://i.ibb.co/BHcjJ2ns/wallpaper-minecraft-pc-bundle-2560x1440.png","thumb":"https://i.ibb.co/ymd5CF4s/wallpaper-minecraft-pc-bundle-2560x1440.png","width":2560,"height":1440,"uploaded":true}],"mobile":[{"path":"img/bg_img/theme_mc/mobile/林澜_2_original.png","url":"https://i.ibb.co/9CBXqWY/2-original.jpg","thumb":"https://i.ibb.co/3LVX0ch/2-original.jpg","width":1648,"height":2944,"uploaded":true},{"path":"img/bg_img/theme_mc/mobile/林澜_3_original.png","url":"https://i.ibb.co/Gfd6WGVm/3-original.jpg","thumb":"https://i.ibb.co/V0L1gbv6/3-original.jpg","width":1648,"height":2944,"uploaded":true},{"path":"img/bg_img/theme_mc/mobile/林澜_4_original.png","url":"https://i.ibb.co/Hfq1P5Q9/4-original.jpg","thumb":"https://i.ibb.co/YFhYdHGV/4-original.jpg","width":1648,"height":2944,"uploaded":true},{"path":"img/bg_img/theme_mc/mobile/林澜_5_original.png","url":"https://i.ibb.co/4wyyH4Sq/5-original.jpg","thumb":"https://i.ibb.co/BHDD9T6p/5-original.jpg","width":1648,"height":2944,"uploaded":true},{"path":"img/bg_img/theme_mc/mobile/林澜_6_original.png","url":"https://i.ibb.co/S4Zrt9XZ/6-original.jpg","thumb":"https://i.ibb.co/8LQcrSDQ/6-original.jpg","width":1648,"height":2944,"uploaded":true},{"path":"img/bg_img/theme_mc/mobile/未别_4_original.png","url":"https://i.ibb.co/VWWHNGkN/4-original.jpg","thumb":"https://i.ibb.co/jvvV5Yj5/4-original.jpg","width":1648,"height":2944,"uploaded":true},{"path":"img/bg_img/theme_mc/mobile/未别_5_original.png","url":"https://i.ibb.co/HpLMSX3N/5-original.jpg","thumb":"https://i.ibb.co/2Y0L95H8/5-original.jpg","width":1648,"height":2944,"uploaded":true},{"path":"img/bg_img/theme_mc/mobile/未别_6_original.png","url":"https://i.ibb.co/NdvsPTx0/6-original.jpg","thumb":"https://i.ibb.co/Mxvs4Bnz/6-original.jpg","width":1648,"height":2944,"uploaded":true},{"path":"img/bg_img/theme_mc/mobile/夏栖_5_original.png","url":"https://i.ibb.co/j9dKk2nQ/5-original.jpg","thumb":"https://i.ibb.co/Y469BMH1/5-original.jpg","width":1648,"height":2944,"uploaded":true},{"path":"img/bg_img/theme_mc/mobile/夏栖_6_original.png","url":"https://i.ibb.co/MD2P4L7q/6-original.jpg","thumb":"https://i.ibb.co/gMjtpCJs/6-original.jpg","width":1648,"height":2944,"uploaded":true},{"path":"img/bg_img/theme_mc/mobile/野境_1_original.png","url":"https://i.ibb.co/VY0CWRJY/1-original.jpg","thumb":"https://i.ibb.co/Xxf5Z1jx/1-original.jpg","width":1648,"height":2944,"uploaded":true},{"path":"img/bg_img/theme_mc/mobile/野境_2_original.png","url":"https://i.ibb.co/LDLjZt9F/2-original.jpg","thumb":"https://i.ibb.co/j9c0rM3N/2-original.jpg","width":1648,"height":2944,"uploaded":true},{"path":"img/bg_img/theme_mc/mobile/野境_3_original.png","url":"https://i.ibb.co/mPLjQbS/3-original.jpg","thumb":"https://i.ibb.co/gc52sm6/3-original.jpg","width":1648,"height":2944,"uploaded":true},{"path":"img/bg_img/theme_mc/mobile/一隅_1_original.png","url":"https://i.ibb.co/G3tHtV5Y/1-original.jpg","thumb":"https://i.ibb.co/84dYdj7v/1-original.jpg","width":1648,"height":2944,"uploaded":true},{"path":"img/bg_img/theme_mc/mobile/一隅_3_original.png","url":"https://i.ibb.co/4nwn0rGW/3-original.jpg","thumb":"https://i.ibb.co/LXDXs7WS/3-original.jpg","width":1648,"height":2944,"uploaded":true},{"path":"img/bg_img/theme_mc/mobile/一隅_4_original.png","url":"https://i.ibb.co/4ZcdMN8n/4-original.jpg","thumb":"https://i.ibb.co/zh1JbfXT/4-original.jpg","width":1648,"height":2944,"uploaded":true},{"path":"img/bg_img/theme_mc/mobile/一隅_5_original.png","url":"https://i.ibb.co/604HFDtG/5-original.jpg","thumb":"https://i.ibb.co/Xxz7tF56/5-original.jpg","width":1648,"height":2944,"uploaded":true},{"path":"img/bg_img/theme_mc/mobile/一隅_6_original.png","url":"https://i.ibb.co/n8nT2RxL/6-original.jpg","thumb":"https://i.ibb.co/CsMqdWRH/6-original.jpg","width":1648,"height":2944,"uploaded":true},{"path":"img/bg_img/theme_mc/mobile/远灯_1_original.png","url":"https://i.ibb.co/CpJD8JXz/1-original.jpg","thumb":"https://i.ibb.co/My8QS8js/1-original.jpg","width":1632,"height":2912,"uploaded":true},{"path":"img/bg_img/theme_mc/mobile/远灯_3_original.png","url":"https://i.ibb.co/yFJdTFYT/3-original.jpg","thumb":"https://i.ibb.co/hFvL5FZ5/3-original.jpg","width":1648,"height":2944,"uploaded":true},{"path":"img/bg_img/theme_mc/mobile/远灯_4_original.png","url":"https://i.ibb.co/fYjWgjks/4-original.jpg","thumb":"https://i.ibb.co/jvnYNnyS/4-original.jpg","width":1648,"height":2944,"uploaded":true},{"path":"img/bg_img/theme_mc/mobile/远灯_5_original.png","url":"https://i.ibb.co/JwRxNs4d/5-original.jpg","thumb":"https://i.ibb.co/VcWHdqZN/5-original.jpg","width":1648,"height":2944,"uploaded":true},{"path":"img/bg_img/theme_mc/mobile/远灯_6_original.png","url":"https://i.ibb.co/5xrWWFgm/6-original.jpg","thumb":"https://i.ibb.co/QjPFFd3L/6-original.jpg","width":1648,"height":2944,"uploaded":true},{"path":"img/bg_img/theme_mc/mobile/wallpaper_minecraft_bedrock_edition_1080x1920.png","url":"https://i.ibb.co/chPxrMRB/wallpaper-minecraft-bedrock-edition-1080x1920.png","thumb":"https://i.ibb.co/602NWVGM/wallpaper-minecraft-bedrock-edition-1080x1920.png","width":1080,"height":1920,"uploaded":true},{"path":"img/bg_img/theme_mc/mobile/wallpaper_minecraft_java_edition_1080x1920.png","url":"https://i.ibb.co/BKNhKS0F/wallpaper-minecraft-java-edition-1080x1920.png","thumb":"https://i.ibb.co/pryHr9Y5/wallpaper-minecraft-java-edition-1080x1920.png","width":1080,"height":1920,"uploaded":true},{"path":"img/bg_img/theme_mc/mobile/wallpaper_minecraft_pc_bundle_1080x1920.png","url":"https://i.ibb.co/HfJ0qqS2/wallpaper-minecraft-pc-bundle-1080x1920.png","thumb":"https://i.ibb.co/9kMJWWDv/wallpaper-minecraft-pc-bundle-1080x1920.png","width":1080,"height":1920,"uploaded":true}]}},"avatar":{"path":"img/personal_img/bf4c3759123c6a8a93e6a48a8d4fbbf6.JPG","url":"https://i.ibb.co/G4Jsgz8R/bf4c3759123c6a8a93e6a48a8d4fbbf6.jpg","thumb":"https://i.ibb.co/2168XGCd/bf4c3759123c6a8a93e6a48a8d4fbbf6.jpg","width":824,"height":824,"uploaded":true},"skins":[{"id":"ba","short":"BA","name":"Blue Archive","tagline":"蔚蓝档案 · 光环之上"},{"id":"mc","short":"MC","name":"Minecraft","tagline":"我的世界 · 方块之下"}],"typewriter":{"enabled":true,"speed":95,"pause":1800,"phrases":["占位文本：正在输入……","Python / Java 记录与折腾","Minecraft 与 Blue Archive 玩家","把 Claude Code、Codex 当作同事","这里会写下我的想法与笔记"]},"search":{"enabled":true,"url":"/search.json","placeholder":"搜索文章、标签或关键词…","empty":"没有找到匹配的内容","limit":12,"hotkey":"k"},"clickFx":{"primary":"https://cdn.jsdelivr.net/npm/ba-click-fx@1.3.8/dist/ba-click-fx.js","fallbacks":["https://unpkg.com/ba-click-fx@1.3.8/dist/ba-click-fx.js","https://cdn.jsdelivr.net/npm/ba-click-fx@1.3.8/dist/ba-click-fx.js"],"enabled":true},"motion":{"ease":"cubic-bezier(0.32, 0.72, 0, 1)","duration":420},"urls":{"home":"/","settings":"/settings/"},"topbar":{"blendOffset":24},"imageStats":{"total":91,"uploaded":91,"local":0,"missing":false}}</script>
+  <script>
+    // 这一小段必须同步执行：在首屏绘制前就把皮肤 / 深浅模式 / 随机背景定下来，避免闪屏
+    (function () {
+      var root = document.documentElement;
+      root.dataset.js = '1';
+      try {
+        var data = JSON.parse(document.getElementById('lawson-data').textContent);
+        var stored = {};
+        try { stored = JSON.parse(localStorage.getItem(data.settingsKey) || '{}') || {}; } catch (e) { stored = {}; }
+        var s = Object.assign({}, data.defaults, stored);
+
+        var mql = window.matchMedia('(prefers-color-scheme: dark)');
+        var mode = s.mode === 'system' ? (mql.matches ? 'dark' : 'light') : s.mode;
+
+        root.dataset.skin = s.skin;
+        root.dataset.mode = mode;
+        root.dataset.modePref = s.mode;
+        root.dataset.motion = s.reduceMotion ? 'reduced' : 'full';
+        root.style.setProperty('--bg-dim', String(s.bgDim / 100));
+        root.style.setProperty('--bg-blur', s.bgBlur + 'px');
+        root.style.setProperty('--font-scale', (s.fontScale || 100) / 100);
+
+        var isMobile = window.matchMedia('(max-width: 860px), (pointer: coarse)').matches;
+        // 兜底：如果模块脚本加载失败，3 秒后强制显示所有滚动动画元素，避免白屏
+        root.dataset.reveal = 'pending';
+        window.setTimeout(function () {
+          if (root.dataset.reveal === 'pending' && root.dataset.jsReady !== '1') root.dataset.reveal = 'off';
+        }, 3000);
+
+        // 背景图池：只从「当前皮肤 + 当前设备」这一档里挑，换皮肤必定换背景
+        var bySkin = (data.backgrounds || {})[s.skin] || {};
+        var primary = bySkin[isMobile ? 'mobile' : 'pc'] || [];
+        if (!primary.length) primary = bySkin[isMobile ? 'pc' : 'mobile'] || [];
+        var pool = primary.map(function (item) {
+          return typeof item === 'string' ? item : (item && item.url) || '';
+        }).filter(Boolean);
+        var stored = s.bgUrl && pool.indexOf(s.bgUrl) > -1 ? s.bgUrl : '';
+        var url = '';
+        if (!s.bgRandom && stored) {
+          url = stored; // 关掉随机 → 固定使用这张
+        } else if (pool.length) {
+          url = pool[Math.floor(Math.random() * pool.length)];
+          try { localStorage.setItem(data.settingsKey, JSON.stringify(Object.assign(s, { bgUrl: url }))); } catch (e) {}
+        } else {
+          url = stored;
+        }
+        if (url) {
+          root.dataset.hasBg = '1';
+          root.style.setProperty('--bg-image', 'url("' + url + '")');
+        }
+      } catch (error) {
+        root.dataset.skin = 'ba';
+        root.dataset.mode = 'light';
+      }
+    })();
+  </script>
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+<body class="layout-index">
+  <div class="bg" aria-hidden="true">
+    <div class="bg__img"></div>
+    <div class="bg__scrim"></div>
+    <div class="bg__grain"></div>
+  </div>
+
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <svg class="icon-sprite" aria-hidden="true" focusable="false" width="0" height="0">
+  <defs>
+    <symbol id="icon-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.6"/><path d="M20 20l-4.3-4.3"/></symbol>
+    <symbol id="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.1"/><path d="M12 2.6v2.1M12 19.3v2.1M2.6 12h2.1M19.3 12h2.1M5.4 5.4l1.5 1.5M17.1 17.1l1.5 1.5M18.6 5.4l-1.5 1.5M6.9 17.1l-1.5 1.5"/></symbol>
+    <symbol id="icon-moon" viewBox="0 0 24 24"><path d="M20.2 14.6A8.6 8.6 0 0 1 9.4 3.8a8.6 8.6 0 1 0 10.8 10.8z"/></symbol>
+    <symbol id="icon-monitor" viewBox="0 0 24 24"><rect x="2.8" y="4.2" width="18.4" height="12.6" rx="2.4"/><path d="M9 20.4h6M12 16.8v3.6"/></symbol>
+    <symbol id="icon-sliders" viewBox="0 0 24 24"><path d="M3.5 8h8M17.5 8h3M3.5 16h3M12.5 16h8"/><circle cx="14.5" cy="8" r="2.6"/><circle cx="9.5" cy="16" r="2.6"/></symbol>
+    <symbol id="icon-palette" viewBox="0 0 24 24"><path d="M12 3.2a8.8 8.8 0 1 0 0 17.6h1.4a2 2 0 0 0 0-4h-.6a1.6 1.6 0 0 1 0-3.2h3.5A4.5 4.5 0 0 0 20.8 9.1C20.8 5.7 16.9 3.2 12 3.2z"/><circle cx="8.2" cy="10.4" r="1.1"/><circle cx="12" cy="7.6" r="1.1"/><circle cx="15.8" cy="10.4" r="1.1"/></symbol>
+    <symbol id="icon-close" viewBox="0 0 24 24"><path d="M6.2 6.2l11.6 11.6M17.8 6.2L6.2 17.8"/></symbol>
+    <symbol id="icon-chevron" viewBox="0 0 24 24"><path d="M6.5 9.5l5.5 5.5 5.5-5.5"/></symbol>
+    <symbol id="icon-arrow-right" viewBox="0 0 24 24"><path d="M4.5 12h14M13 6.2l5.8 5.8-5.8 5.8"/></symbol>
+    <symbol id="icon-arrow-down" viewBox="0 0 24 24"><path d="M12 4.5v14M6.2 13l5.8 5.8 5.8-5.8"/></symbol>
+    <symbol id="icon-arrow-left" viewBox="0 0 24 24"><path d="M19.5 12h-14M11 6.2L5.2 12 11 17.8"/></symbol>
+    <symbol id="icon-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="icon-mail" viewBox="0 0 24 24"><rect x="2.8" y="5" width="18.4" height="14" rx="2.6"/><path d="M4 7.6l7.2 5 7.2-5"/></symbol>
+    <symbol id="icon-rss" viewBox="0 0 24 24"><path d="M5 11.2a7.8 7.8 0 0 1 7.8 7.8M5 5.2A13.8 13.8 0 0 1 18.8 19"/><circle cx="6.2" cy="17.8" r="1.5"/></symbol>
+    <symbol id="icon-link" viewBox="0 0 24 24"><path d="M10.2 13.4a4.6 4.6 0 0 0 6.5 0l2.6-2.6a4.6 4.6 0 0 0-6.5-6.5l-1 1"/><path d="M13.8 10.6a4.6 4.6 0 0 0-6.5 0l-2.6 2.6a4.6 4.6 0 0 0 6.5 6.5l1-1"/></symbol>
+    <symbol id="icon-external" viewBox="0 0 24 24"><path d="M14 4.2h5.8V10M19.8 4.2L11 13"/><path d="M18 14.4V18a1.6 1.6 0 0 1-1.6 1.6H5.6A1.6 1.6 0 0 1 4 18V7.2a1.6 1.6 0 0 1 1.6-1.6h3.6"/></symbol>
+    <symbol id="icon-game" viewBox="0 0 24 24"><rect x="2.4" y="7" width="19.2" height="10" rx="4.4"/><path d="M7 12h3M8.5 10.5v3"/><circle cx="15.6" cy="11.4" r="1"/><circle cx="17.6" cy="13.4" r="1"/></symbol>
+    <symbol id="icon-code" viewBox="0 0 24 24"><path d="M9 7.2L4.2 12 9 16.8M15 7.2L19.8 12 15 16.8"/></symbol>
+    <symbol id="icon-sparkles" viewBox="0 0 24 24"><path d="M11 3.2l1.7 4.4 4.4 1.7-4.4 1.7L11 15.4 9.3 11 4.9 9.3 9.3 7.6z"/><path d="M18 14.4l.9 2.3 2.3.9-2.3.9-.9 2.3-.9-2.3-2.3-.9 2.3-.9z"/></symbol>
+    <symbol id="icon-refresh" viewBox="0 0 24 24"><path d="M20 11.2a8 8 0 1 0-2.4 6.2"/><path d="M20 4.6v6.6h-6.6"/></symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24"><path d="M5 12.6l4.6 4.6L19 7.6"/></symbol>
+    <symbol id="icon-home" viewBox="0 0 24 24"><path d="M4 10.6L12 4l8 6.6V20a1 1 0 0 1-1 1h-4.4v-6.2H9.4V21H5a1 1 0 0 1-1-1z"/></symbol>
+  </defs>
+</svg>
+
+  
+<header class="topbar" id="topbar" data-scrolled="false">
+  <div class="topbar__inner">
+    <a class="topbar__brand" href="/">
+      <span class="topbar__mark" aria-hidden="true"></span>
+      <span class="topbar__brand-text">Lawson_Hui的博客</span>
+    </a>
+
+    <nav class="topbar__nav" aria-label="主导航">
+      
+        <a class="topbar__link " href="/">首页</a>
+      
+        <a class="topbar__link " href="/archives/">文章</a>
+      
+        <a class="topbar__link " href="/about/">关于</a>
+      
+    </nav>
+
+    <div class="topbar__controls">
+      <div class="segmented" role="group" aria-label="主题皮肤">
+        <span class="segmented__glider" aria-hidden="true"></span>
+        
+          <button class="segmented__item" type="button" data-skin-option="ba" data-index="0" title="Blue Archive · 蔚蓝档案 · 光环之上" aria-pressed="false">
+            <span class="segmented__short">BA</span>
+            <span class="segmented__name">Blue Archive</span>
+          </button>
+        
+          <button class="segmented__item" type="button" data-skin-option="mc" data-index="1" title="Minecraft · 我的世界 · 方块之下" aria-pressed="false">
+            <span class="segmented__short">MC</span>
+            <span class="segmented__name">Minecraft</span>
+          </button>
+        
+      </div>
+
+      
+        <button class="icon-btn" type="button" data-action="search" aria-label="搜索" title="搜索 ⌘K">
+          <svg class="icon" aria-hidden="true"><use href="#icon-search"></use></svg>
+        </button>
+      
+
+      <div class="anchor">
+        <button class="icon-btn" type="button" data-action="mode-menu" aria-haspopup="true" aria-expanded="false" aria-label="深浅模式" title="深浅模式">
+          <svg class="icon" data-mode-icon aria-hidden="true"><use href="#icon-monitor"></use></svg>
+        </button>
+        <div class="popover" data-popover="mode" hidden>
+          
+            <button class="popover__item" type="button" role="menuitemradio" aria-checked="false" data-control="radio" data-setting="mode" data-value="light">
+              <svg class="icon" aria-hidden="true"><use href="#icon-sun"></use></svg>
+              <span>浅色</span>
+              <svg class="icon popover__check" aria-hidden="true"><use href="#icon-check"></use></svg>
+            </button>
+          
+            <button class="popover__item" type="button" role="menuitemradio" aria-checked="false" data-control="radio" data-setting="mode" data-value="dark">
+              <svg class="icon" aria-hidden="true"><use href="#icon-moon"></use></svg>
+              <span>深色</span>
+              <svg class="icon popover__check" aria-hidden="true"><use href="#icon-check"></use></svg>
+            </button>
+          
+            <button class="popover__item" type="button" role="menuitemradio" aria-checked="false" data-control="radio" data-setting="mode" data-value="system">
+              <svg class="icon" aria-hidden="true"><use href="#icon-monitor"></use></svg>
+              <span>跟随系统</span>
+              <svg class="icon popover__check" aria-hidden="true"><use href="#icon-check"></use></svg>
+            </button>
+          
+        </div>
+      </div>
+
+      <button class="icon-btn" type="button" data-action="settings" aria-label="设置" title="设置">
+        <svg class="icon" aria-hidden="true"><use href="#icon-sliders"></use></svg>
+      </button>
+
+      <button class="icon-btn icon-btn--mobile" type="button" data-action="mobile-menu" aria-label="菜单" title="菜单">
+        <svg class="icon" aria-hidden="true"><use href="#icon-menu"></use></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="sheet-menu" data-sheet="menu" hidden>
+  <div class="sheet-menu__panel" role="dialog" aria-modal="true" aria-label="菜单">
+    <div class="sheet-menu__head">
+      <span class="sheet-menu__title">Lawson_Hui的博客</span>
+      <button class="icon-btn" type="button" data-action="close-sheet" aria-label="关闭">
+        <svg class="icon" aria-hidden="true"><use href="#icon-close"></use></svg>
+      </button>
+    </div>
+    <nav class="sheet-menu__nav" aria-label="移动端导航">
+      
+        <a class="sheet-menu__link " href="/">
+          <span>首页</span>
+          <svg class="icon" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
+        </a>
+      
+        <a class="sheet-menu__link " href="/archives/">
+          <span>文章</span>
+          <svg class="icon" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
+        </a>
+      
+        <a class="sheet-menu__link " href="/about/">
+          <span>关于</span>
+          <svg class="icon" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
+        </a>
+      
+      
+        <button class="sheet-menu__link" type="button" data-action="search">
+          <span>搜索</span>
+          <svg class="icon" aria-hidden="true"><use href="#icon-search"></use></svg>
+        </button>
+      
+    </nav>
+    <div class="sheet-menu__block">
+      <span class="field__label">深浅模式</span>
+      <div class="choices">
+        
+          <button class="choice" type="button" data-control="radio" data-setting="mode" data-value="light">
+            <svg class="icon" aria-hidden="true"><use href="#icon-sun"></use></svg>
+            <span>浅色</span>
+          </button>
+        
+          <button class="choice" type="button" data-control="radio" data-setting="mode" data-value="dark">
+            <svg class="icon" aria-hidden="true"><use href="#icon-moon"></use></svg>
+            <span>深色</span>
+          </button>
+        
+          <button class="choice" type="button" data-control="radio" data-setting="mode" data-value="system">
+            <svg class="icon" aria-hidden="true"><use href="#icon-monitor"></use></svg>
+            <span>跟随系统</span>
+          </button>
+        
+      </div>
+    </div>
+    <div class="sheet-menu__block">
+      <span class="field__label">主题皮肤</span>
+      <div class="choices">
+        
+          <button class="choice" type="button" data-control="radio" data-setting="skin" data-value="ba">
+            <span class="choice__badge">BA</span>
+            <span>Blue Archive</span>
+          </button>
+        
+          <button class="choice" type="button" data-control="radio" data-setting="skin" data-value="mc">
+            <span class="choice__badge">MC</span>
+            <span>Minecraft</span>
+          </button>
+        
+      </div>
+    </div>
+    <a class="btn btn--ghost sheet-menu__settings" href="/settings/">
+      <svg class="icon" aria-hidden="true"><use href="#icon-sliders"></use></svg>
+      <span>设置</span>
+    </a>
+  </div>
+</div>
+
+
+  <main class="main" id="main">
+    
+<div class="sheet">
+  <section class="section section--taxonomy">
+    <header class="page-head reveal">
+      <p class="eyebrow">Tag</p>
+      <h1 class="page-title"># 博客</h1>
+      <p class="page-lead">共 1 篇相关文章</p>
+    </header>
+
+    
+      <ul class="post-list">
+        
+          <li class="post-list__item reveal">
+            <a class="post-list__link" href="/2026/10/07/hello-world/">
+              <span class="post-list__title">Hello World：我的第一篇博客</span>
+              <time class="post-list__date" datetime="2026-10-07T13:30:00.000Z">2026-10-07</time>
+            </a>
+          </li>
+        
+      </ul>
+    
+  </section>
+</div>
+
+  </main>
+
+  
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__brand">
+      <span class="topbar__mark" aria-hidden="true"></span>
+      <span>Lawson_Hui的博客</span>
+    </div>
+    <p class="footer__meta">
+      © 2025–2026 Lawson_Hui
+      
+    </p>
+    
+    <div class="footer__links">
+      <a href="/archives/">归档</a>
+      <a href="/tags/">标签</a>
+      <a href="/subscribe/">订阅</a>
+      <a href="/settings/">设置</a>
+    </div>
+    
+      <p class="footer__powered">Built with <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> · 主题 lawson · 图床 <a href="https://imgbb.com/" target="_blank" rel="noopener">ImgBB</a></p>
+    
+  </div>
+</footer>
+
+  
+<div class="search" data-overlay="search" hidden>
+  <div class="search__scrim" data-action="close-search"></div>
+  <div class="search__dialog" role="dialog" aria-modal="true" aria-label="搜索">
+    <div class="search__field">
+      <svg class="icon" aria-hidden="true"><use href="#icon-search"></use></svg>
+      <input class="search__input" type="search" data-search-input placeholder="搜索文章、标签或关键词…" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="搜索关键词">
+      <button class="icon-btn icon-btn--small" type="button" data-action="close-search" aria-label="关闭搜索">
+        <svg class="icon" aria-hidden="true"><use href="#icon-close"></use></svg>
+      </button>
+    </div>
+    <div class="search__results" data-search-results>
+      <p class="search__hint">输入关键词开始搜索，支持标题、标签与正文。</p>
+    </div>
+    <div class="search__footer">
+      <span data-search-status>共 2 篇文章</span>
+      <span class="search__keys"><kbd>↑</kbd><kbd>↓</kbd> 选择 · <kbd>↵</kbd> 打开 · <kbd>esc</kbd> 关闭</span>
+    </div>
+  </div>
+</div>
+
+
+  <aside class="panel" data-panel="settings" hidden aria-label="设置">
+  <div class="panel__scrim" data-action="close-panel"></div>
+  <div class="panel__dialog" role="dialog" aria-modal="true" aria-label="设置">
+    <header class="panel__head">
+      <h2 class="panel__title">设置</h2>
+      <button class="icon-btn" type="button" data-action="close-panel" aria-label="关闭设置">
+        <svg class="icon" aria-hidden="true"><use href="#icon-close"></use></svg>
+      </button>
+    </header>
+    <div class="panel__content">
+      
+<div class="settings">
+  <section class="settings__group">
+    <h3 class="settings__title">外观</h3>
+
+    <div class="field">
+      <span class="field__label">主题皮肤<span class="field__hint">顶栏也可以直接切换</span></span>
+      <div class="choices choices--skin">
+        
+          <button class="choice choice--skin" type="button" data-control="radio" data-setting="skin" data-value="ba">
+            <span class="choice__badge">BA</span>
+            <span class="choice__text">
+              <span class="choice__name">Blue Archive</span>
+              <span class="choice__tagline">蔚蓝档案 · 光环之上</span>
+            </span>
+            <svg class="icon choice__check" aria-hidden="true"><use href="#icon-check"></use></svg>
+          </button>
+        
+          <button class="choice choice--skin" type="button" data-control="radio" data-setting="skin" data-value="mc">
+            <span class="choice__badge">MC</span>
+            <span class="choice__text">
+              <span class="choice__name">Minecraft</span>
+              <span class="choice__tagline">我的世界 · 方块之下</span>
+            </span>
+            <svg class="icon choice__check" aria-hidden="true"><use href="#icon-check"></use></svg>
+          </button>
+        
+      </div>
+    </div>
+
+    <div class="field">
+      <span class="field__label">深浅模式</span>
+      <div class="choices">
+        <button class="choice" type="button" data-control="radio" data-setting="mode" data-value="light">
+          <svg class="icon" aria-hidden="true"><use href="#icon-sun"></use></svg><span>浅色</span>
+        </button>
+        <button class="choice" type="button" data-control="radio" data-setting="mode" data-value="dark">
+          <svg class="icon" aria-hidden="true"><use href="#icon-moon"></use></svg><span>深色</span>
+        </button>
+        <button class="choice" type="button" data-control="radio" data-setting="mode" data-value="system">
+          <svg class="icon" aria-hidden="true"><use href="#icon-monitor"></use></svg><span>跟随系统</span>
+        </button>
+      </div>
+    </div>
+
+    <label class="field field--row">
+      <span class="field__label">界面字号<span class="field__hint">让文字更大一点</span></span>
+      <span class="field__control">
+        <input class="range" type="range" min="90" max="125" step="5" data-control="range" data-setting="fontScale" data-unit="%">
+        <output class="range__output" data-output="fontScale"></output>
+      </span>
+    </label>
+  </section>
+
+  <section class="settings__group">
+    <h3 class="settings__title">背景</h3>
+
+    <label class="field field--row">
+      <span class="field__label">每次刷新随机换一张<span class="field__hint">关掉后固定使用当前这张</span></span>
+      <span class="switch">
+        <input type="checkbox" data-control="toggle" data-setting="bgRandom">
+        <span class="switch__track" aria-hidden="true"><span class="switch__thumb"></span></span>
+      </span>
+    </label>
+
+    <label class="field field--row">
+      <span class="field__label">背景压暗<span class="field__hint">让前景文字更清晰</span></span>
+      <span class="field__control">
+        <input class="range" type="range" min="0" max="70" step="2" data-control="range" data-setting="bgDim" data-unit="%">
+        <output class="range__output" data-output="bgDim"></output>
+      </span>
+    </label>
+
+    <label class="field field--row">
+      <span class="field__label">背景模糊</span>
+      <span class="field__control">
+        <input class="range" type="range" min="0" max="20" step="1" data-control="range" data-setting="bgBlur" data-unit="px">
+        <output class="range__output" data-output="bgBlur"></output>
+      </span>
+    </label>
+
+    <div class="field field--row">
+      <span class="field__label">换一张</span>
+      <button class="btn btn--ghost btn--small" type="button" data-action="new-bg">
+        <svg class="icon" aria-hidden="true"><use href="#icon-refresh"></use></svg>
+        <span>随机背景</span>
+      </button>
+    </div>
+  </section>
+
+  <section class="settings__group">
+    <h3 class="settings__title">动效</h3>
+
+    <label class="field field--row">
+      <span class="field__label">鼠标点击特效<span class="field__hint">BA 皮肤 · ba-click-fx</span></span>
+      <span class="switch">
+        <input type="checkbox" data-control="toggle" data-setting="clickFx">
+        <span class="switch__track" aria-hidden="true"><span class="switch__thumb"></span></span>
+      </span>
+    </label>
+
+    <label class="field field--row field--sub">
+      <span class="field__label">指针常驻拖尾<span class="field__hint">不按下鼠标也显示拖尾</span></span>
+      <span class="switch">
+        <input type="checkbox" data-control="toggle" data-setting="clickFxTrail">
+        <span class="switch__track" aria-hidden="true"><span class="switch__thumb"></span></span>
+      </span>
+    </label>
+
+    <label class="field field--row">
+      <span class="field__label">首屏打字机</span>
+      <span class="switch">
+        <input type="checkbox" data-control="toggle" data-setting="typewriter">
+        <span class="switch__track" aria-hidden="true"><span class="switch__thumb"></span></span>
+      </span>
+    </label>
+
+    <label class="field field--row">
+      <span class="field__label">打字速度<span class="field__hint">数值越小越快</span></span>
+      <span class="field__control">
+        <input class="range" type="range" min="30" max="220" step="5" data-control="range" data-setting="typeSpeed" data-unit="ms">
+        <output class="range__output" data-output="typeSpeed"></output>
+      </span>
+    </label>
+
+    <label class="field field--row">
+      <span class="field__label">减弱动效<span class="field__hint">关闭位移与滚动动画</span></span>
+      <span class="switch">
+        <input type="checkbox" data-control="toggle" data-setting="reduceMotion">
+        <span class="switch__track" aria-hidden="true"><span class="switch__thumb"></span></span>
+      </span>
+    </label>
+  </section>
+
+  <div class="settings__foot">
+    <p class="settings__note">
+      所有设置都保存在这台设备的浏览器里（localStorage），不会上传到服务器。
+      
+        <br>本站共 91 张图片，91 张托管在 ImgBB 图床。
+      
+    </p>
+    <button class="btn btn--ghost btn--small" type="button" data-action="reset-settings">
+      <svg class="icon" aria-hidden="true"><use href="#icon-refresh"></use></svg>
+      <span>恢复默认</span>
+    </button>
+  </div>
+</div>
+
+    </div>
+  </div>
+</aside>
+
+
+  <button class="to-top" type="button" data-action="to-top" aria-label="回到顶部" hidden>
+    <svg class="icon" aria-hidden="true"><use href="#icon-arrow-down"></use></svg>
+  </button>
+
+  <script type="module" src="/js/app.js?v=3cbb48d67c"></script>
+</body>
+</html>
