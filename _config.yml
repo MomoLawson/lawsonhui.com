@@ -205,7 +205,7 @@ lawson:
       url: ""                     # 留空时自动使用上面的 profile.email
     - icon: rss
       label: RSS
-      url: atom.xml
+      url: subscribe/                  # 指向订阅引导页，而不是直接打开 xml
 
   # 顶栏导航（theme 皮肤切换 / 搜索 / 深浅 / 设置 会自动附加在右侧）
   nav:
@@ -229,6 +229,39 @@ lawson:
         short: MC
         name: Minecraft
         tagline: 我的世界 · 方块之下
+
+  # MC 皮肤首屏右上角的「闪动标语」（原版 Minecraft 主菜单那种）
+  splash:
+    enabled: true
+    text: 随机背景！
+    font: unifont              # unifont = Minecraft 同款 Unifont 像素字体；display = 跟随主题字体
+    color: "#ffec4f"           # 文字颜色
+    shadow_color: "#3f3f00"    # 字影颜色（原版是文字同色系压暗）
+    outline_width: 0           # 描边宽度 px，0 = 不描边；想要白边就填 1~2
+    outline_color: "#ffffff"   # 描边颜色（outline_width > 0 时生效）
+    angle: -14                 # 倾斜角度
+    pulse: true                # 放大缩小闪动
+    pulse_speed: 0.9           # 每秒闪动次数
+    pulse_scale: 0.09          # 最大放大比例（0.09 ≈ 9%）
+
+  # RSS / Atom 订阅引导页
+  feed:
+    enabled: true
+    title: 订阅本站
+    description: 用 RSS 阅读器订阅，有新文章会自动出现，不用注册账号、也没有广告和推送算法。
+    path: atom.xml           # 实际生成的 feed 文件
+    page: subscribe/         # 订阅引导页地址
+    qr: true                 # 显示二维码（手机上扫码直接订阅）
+    hint: 把下面的地址复制到任意 RSS 阅读器即可；也可以直接点下面的按钮。
+    readers:
+      - name: Feedly
+        url: "https://feedly.com/i/subscription/feed/{feed}"
+      - name: Inoreader
+        url: "https://www.inoreader.com/?add_feed={feed}"
+      - name: NewsBlur
+        url: "https://newsblur.com/?url={feed}"
+      - name: Follow
+        url: "https://app.follow.is/search/feed?url={feed}"
 
   # 背景图设置（后台随机选图，可在设置面板中调整）
   background:

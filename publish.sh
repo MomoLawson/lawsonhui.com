@@ -59,10 +59,12 @@ if [ ! -d node_modules ]; then
 fi
 
 if [ "$SKIP_IMAGES" -eq 0 ]; then
-  step "1/4 增量上传图片到 ImgBB"
+  step "1/4 生成 splash 像素字体子集 + 增量上传图片到 ImgBB"
+  node tools/build-splash-font.mjs
   node tools/upload-images.mjs
 else
   step "1/4 跳过图片上传（--skip-images）"
+  node tools/build-splash-font.mjs
 fi
 
 step "2/4 生成静态站点"

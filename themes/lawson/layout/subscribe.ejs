@@ -1,0 +1,54 @@
+<%
+  const L = site.lawson;
+  const feed = site.feed || { readers: [] };
+%>
+<div class="sheet">
+  <section class="section section--subscribe">
+    <header class="page-head reveal">
+      <p class="eyebrow">Subscribe</p>
+      <h1 class="page-title"><%= page.title || feed.title || '订阅本站' %></h1>
+      <p class="page-lead"><%= page.description || feed.description || '' %></p>
+    </header>
+
+    <div class="subscribe card reveal">
+      <div class="subscribe__main">
+        <span class="field__label">Feed 地址</span>
+        <div class="copybox">
+          <input class="copybox__input" type="text" readonly value="<%= feed.url %>" data-feed-url aria-label="Feed 地址">
+          <button class="btn btn--primary btn--small" type="button" data-action="copy-feed">
+            <svg class="icon" aria-hidden="true"><use href="#icon-link"></use></svg>
+            <span data-copy-label>复制链接</span>
+          </button>
+        </div>
+
+        <% if (feed.hint) { %><p class="subscribe__hint"><%= feed.hint %></p><% } %>
+
+        <% if (feed.readers && feed.readers.length) { %>
+          <div class="subscribe__readers">
+            <% feed.readers.forEach(function (reader) { %>
+              <a class="reader" href="<%= reader.url %>" target="_blank" rel="noopener">
+                <span><%= reader.name %></span>
+                <svg class="icon" aria-hidden="true"><use href="#icon-external"></use></svg>
+              </a>
+            <% }); %>
+          </div>
+        <% } %>
+
+        <p class="subscribe__raw">
+          想直接看原始的 XML：<a href="<%= url_for(feed.path) %>">/<%= feed.path %></a>
+        </p>
+      </div>
+
+      <% if (feed.qrSvg) { %>
+        <figure class="subscribe__qr">
+          <%- feed.qrSvg %>
+          <figcaption>扫码订阅</figcaption>
+        </figure>
+      <% } %>
+    </div>
+
+    <% if (page.content && strip_html(page.content).trim()) { %>
+      <div class="prose subscribe__note reveal"><%- page.content %></div>
+    <% } %>
+  </section>
+</div>

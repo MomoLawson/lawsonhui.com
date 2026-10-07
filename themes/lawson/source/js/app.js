@@ -154,6 +154,43 @@ function scrollTop() {
   window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
 }
 
+/** 订阅页：复制 Feed 地址（优先 Clipboard API，失败时退回 execCommand） */
+async function copyFeed(button) {
+  const input = document.querySelector('[data-feed-url]');
+  const label = button.querySelector('[data-copy-label]');
+  const value = input ? input.value : '';
+  let copied = false;
+
+  if (navigator.clipboard && window.isSecureContext) {
+    try {
+      await navigator.clipboard.writeText(value);
+      copied = true;
+    } catch (error) {
+      copied = false;
+    }
+  }
+  if (!copied && input) {
+    input.removeAttribute('readonly');
+    input.select();
+    input.setSelectionRange(0, value.length);
+    try {
+      copied = document.execCommand('copy');
+    } catch (error) {
+      copied = false;
+    }
+    input.setAttribute('readonly', 'readonly');
+    if (window.getSelection) window.getSelection().removeAllRanges();
+  }
+
+  if (label) {
+    if (!label.dataset.original) label.dataset.original = label.textContent;
+    label.textContent = copied ? '已复制 ✓' : '请手动复制';
+    window.setTimeout(() => {
+      label.textContent = label.dataset.original;
+    }, 1800);
+  }
+}
+
 document.addEventListener('click', event => {
   const actionNode = event.target.closest('[data-action]');
   if (actionNode) {
@@ -180,6 +217,8 @@ document.addEventListener('click', event => {
     } else if (action === 'reset-settings') {
       reset();
       newBackground();
+    } else if (action === 'copy-feed') {
+      copyFeed(actionNode);
     }
     if (action !== 'mode-menu') closePopovers();
     return;

@@ -14,6 +14,8 @@ db.json
 # themes/lawson/source/img/ 里的主题图标。
 /img/
 /source/images/
+# Unifont 源字体（5MB，构建时按需下载；真正提交的是裁好的 2KB woff2 子集）
+/tools/fonts/
 
 # ------------------------------ 密钥 ------------------------------
 .env

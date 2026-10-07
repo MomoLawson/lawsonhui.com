@@ -17,7 +17,7 @@
     <div class="footer__links">
       <a href="<%= url_for('archives/') %>">归档</a>
       <a href="<%= url_for('tags/') %>">标签</a>
-      <a href="<%= url_for('atom.xml') %>">RSS</a>
+      <a href="<%= url_for((L.feed && L.feed.page) || 'subscribe/') %>">订阅</a>
       <a href="<%= url_for('settings/') %>">设置</a>
     </div>
     <% if (L.footer.powered_by !== false) { %>

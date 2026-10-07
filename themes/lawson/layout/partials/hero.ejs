@@ -27,5 +27,21 @@
     <svg class="icon" aria-hidden="true"><use href="#icon-arrow-down"></use></svg>
   </a>
 
-  <span class="hero__splash" aria-hidden="true">随机背景！</span>
+  <%
+    const splash = L.splash || {};
+    const splashOutline = Number(splash.outline_width) > 0;
+    const splashStyle = [
+      '--splash-color:' + (splash.color || '#ffec4f'),
+      '--splash-outline:' + (splash.outline_color || '#ffffff'),
+      '--splash-outline-width:' + (splashOutline ? Number(splash.outline_width) : 0) + 'px',
+      '--splash-shadow:' + (splash.shadow_color || '#3f3f00'),
+      '--splash-angle:' + (splash.angle === undefined ? -14 : splash.angle) + 'deg',
+      splash.pulse === false
+        ? '--splash-animation:none'
+        : '--splash-pulse-duration:' + (1 / (Number(splash.pulse_speed) || 0.9)).toFixed(2) + 's; --splash-pulse-scale:' + (1 + (Number(splash.pulse_scale) || 0.09)).toFixed(3)
+    ].join(';');
+  %>
+  <% if (splash.enabled !== false && splash.text) { %>
+    <span class="hero__splash" data-splash data-splash-font="<%= splash.font || 'unifont' %>" data-splash-outline="<%= splashOutline ? 'on' : 'off' %>" style="<%= splashStyle %>" aria-hidden="true"><%= splash.text %></span>
+  <% } %>
 </section>

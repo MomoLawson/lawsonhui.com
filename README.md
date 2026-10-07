@@ -8,6 +8,10 @@
 两套皮肤在顶栏一键切换，背景图每次刷新随机换一张（BA / MC 各自一套壁纸）。
 没有后端、没有数据库，构建产物就是最终产物；图片在构建时增量上传到 ImgBB 图床，仓库里不存图。
 
+MC 皮肤首屏右上角还有一行原版 Minecraft 主菜单那种「闪动标语」（放大缩小 + 字影，用 Unifont 像素字体渲染），
+文案、字体、颜色、倾斜角度、闪动速度都能在 `_config.yml` 的 `lawson.splash` 里改。
+RSS 不直接甩一段 XML，而是走订阅引导页 `/subscribe/`：复制链接、二维码、常用阅读器一键跳转。
+
 ---
 
 ## 快速开始
@@ -50,19 +54,23 @@ npm run build        # 上传图片 + 生成静态站点到 public/
 ├── scripts/                    # Hexo 插件脚本
 │   ├── lawson.js               # 合并配置、生成图片索引、imgx 标签
 │   ├── search.js               # 生成静态搜索索引 search.json
+│   ├── feed.js                 # 订阅页数据：feed 绝对地址、阅读器链接、二维码
 │   └── pages.js                # 生成 404.html
 ├── source/
 │   ├── _posts/                 # 文章（Markdown）
 │   ├── about/                  # 关于页
 │   ├── settings/               # 设置页
+│   ├── subscribe/              # 订阅引导页正文（卡片由主题拼）
 │   └── CNAME                   # GitHub Pages 自定义域名
 ├── themes/lawson/              # 主题（双皮肤共用一套组件）
 │   ├── layout/                 # EJS 模板
-│   └── source/{css,js,img}     # 样式、脚本、图标
+│   ├── source/{css,js,img}     # 样式、脚本、图标
+│   └── source/fonts/           # Unifont 像素字体子集（构建期裁出，约 2KB）
 └── tools/
     ├── upload-images.mjs       # 增量上传到 ImgBB
     ├── verify-images.mjs       # 体检图床链接
     ├── deploy-pages.mjs        # 发布 public/ 到 gh-pages
+    ├── build-splash-font.mjs   # 把 Unifont 裁成只含 splash 文案的 2KB 子集
     ├── image-manifest.json     # 上传清单（需要提交）
     └── lib/                    # 图片扫描 / 代理探测
 ```
@@ -110,7 +118,12 @@ node tools/upload-images.mjs --only=theme_mc   # 只处理某个目录
 node tools/upload-images.mjs --force           # 忽略缓存全部重传
 npm run verify                      # 体检所有图床链接
 node tools/verify-images.mjs --fix  # 把失效链接标记为待重传
+npm run font                        # 按当前 splash 文案重裁 Unifont 像素字体（2KB 子集）
+npm run font:force                  # 强制重新生成（换了字体源、想重做子集时用）
 ```
+
+> `npm run font` 只在 splash 出现新字符时才真正干活；拿不到 Unifont 源字体时会保留已有的子集，
+> 站点照常构建（splash 回退到普通字体）。源字体缓存在 `tools/fonts/`，不进仓库。
 
 ---
 
@@ -129,6 +142,8 @@ node tools/verify-images.mjs --fix  # 把失效链接标记为待重传
 | `nav[]` | 顶栏导航 |
 | `theme.default` / `theme.skins[]` | 两套皮肤的名称、简称、标语 |
 | `theme.click_fx` | BA 皮肤点击特效的默认开关 |
+| `splash.*` | MC 皮肤右上角的闪动标语：开关、文案、字体（`unifont` / `display`）、颜色、字影、描边、倾斜角度、闪动速度与幅度 |
+| `feed.*` | RSS 订阅页：标题、说明、feed 路径、页面地址、二维码开关、阅读器列表（`{feed}` 会替换成 feed 的绝对地址） |
 | `background.*` | 随机背景开关、压暗、模糊、两套皮肤 pc/mobile 的图片目录 |
 | `posts.*` | 首页文章区标题、摘要长度 |
 | `settings.*` | 设置面板文案 |

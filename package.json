@@ -8,11 +8,13 @@
   },
   "scripts": {
     "clean": "hexo clean",
+    "font": "node tools/build-splash-font.mjs",
+    "font:force": "node tools/build-splash-font.mjs --force",
     "images": "node tools/upload-images.mjs",
     "images:dry": "node tools/upload-images.mjs --dry-run",
-    "build": "node tools/upload-images.mjs && hexo generate",
+    "build": "node tools/build-splash-font.mjs && node tools/upload-images.mjs && hexo generate",
     "build:offline": "hexo generate",
-    "dev": "node tools/upload-images.mjs --no-fail && hexo server",
+    "dev": "node tools/build-splash-font.mjs && node tools/upload-images.mjs --no-fail && hexo server",
     "server": "hexo server",
     "publish": "./publish.sh",
     "deploy:pages": "node tools/deploy-pages.mjs",
@@ -31,6 +33,8 @@
     "hexo-server": "^3.0.0"
   },
   "devDependencies": {
+    "qrcode": "^1.5.4",
+    "subset-font": "^2.9.0",
     "undici": "^7.30.0"
   }
 }
