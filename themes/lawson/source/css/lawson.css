@@ -68,6 +68,20 @@ html {
   --bg-blur: 0px;
   --font-scale: 1;
   --topbar-h: 64px;
+
+  /* 背景图的压暗层：JS 量顶栏背后那条的亮度时按同样的数值模拟，改这里两边一起变 */
+  --scrim-1: 0.62;
+  --scrim-2: 0.26;
+
+  /* 顶栏压在背景图上时的字色（默认白字方案；JS 量出背景偏亮会给 <html> 打 data-bar-ink="dark"） */
+  --bar-ink: #ffffff;
+  --bar-ink-soft: rgba(255, 255, 255, 0.74);
+  --bar-ink-shadow: 0 1px 12px rgba(0, 0, 0, 0.35);
+  --bar-chip: rgba(255, 255, 255, 0.16);
+  --bar-chip-line: rgba(255, 255, 255, 0.26);
+  --bar-chip-hover: rgba(255, 255, 255, 0.16);
+  --bar-glider: #ffffff;
+  --bar-glider-ink: #10131a;
 }
 
 /* BA 皮肤 · 浅色（默认） */
@@ -205,6 +219,19 @@ html[data-skin="mc"][data-mode="dark"] {
              repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.03) 0 2px, transparent 2px 4px);
 }
 
+/* 背景偏亮时，顶栏（以及皮肤切换 / 图标）改用深色字。
+   data-bar-ink 由 JS 量出背景图亮度后打在最外层 <html> 上，见 source/js/background.js */
+html[data-bar-ink="dark"] {
+  --bar-ink: #10131a;
+  --bar-ink-soft: rgba(16, 19, 26, 0.72);
+  --bar-ink-shadow: 0 1px 14px rgba(255, 255, 255, 0.6);
+  --bar-chip: rgba(255, 255, 255, 0.5);
+  --bar-chip-line: rgba(16, 19, 26, 0.16);
+  --bar-chip-hover: rgba(16, 19, 26, 0.1);
+  --bar-glider: #10131a;
+  --bar-glider-ink: #ffffff;
+}
+
 /* --------------------------- 3. Background ----------------------------- */
 .bg { position: fixed; inset: 0; z-index: 0; overflow: hidden; background: var(--bg-base); }
 .bg__img {
@@ -223,7 +250,7 @@ html:not([data-has-bg]) .bg__img {
 .bg__scrim {
   position: absolute; inset: 0;
   background:
-    linear-gradient(180deg, rgba(5, 8, 15, 0.62) 0%, rgba(5, 8, 15, 0.26) 26%, rgba(5, 8, 15, 0.06) 52%, rgba(5, 8, 15, 0.22) 100%),
+    linear-gradient(180deg, rgba(5, 8, 15, var(--scrim-1, 0.62)) 0%, rgba(5, 8, 15, var(--scrim-2, 0.26)) 26%, rgba(5, 8, 15, 0.06) 52%, rgba(5, 8, 15, 0.22) 100%),
     rgba(5, 8, 15, var(--bg-dim, 0.34));
 }
 .bg__grain { position: absolute; inset: 0; background-image: var(--texture); opacity: 0.9; }
@@ -282,16 +309,22 @@ html[data-skin="mc"] .bg__grain { opacity: 0.45; }
 }
 .icon-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
 
-/* 顶栏在首屏与背景融合：无分割线 */
-.topbar:not(.is-scrolled) .topbar__brand,
-.topbar:not(.is-scrolled) .topbar__link,
-.topbar:not(.is-scrolled) .icon-btn { color: #fff; text-shadow: 0 1px 12px rgba(0, 0, 0, 0.35); }
-.topbar:not(.is-scrolled) .topbar__link.is-active::after { opacity: 0.9; }
-.topbar:not(.is-scrolled) .icon-btn:hover { background: rgba(255, 255, 255, 0.16); }
-.topbar:not(.is-scrolled) .segmented { background: rgba(255, 255, 255, 0.16); border-color: rgba(255, 255, 255, 0.26); }
-.topbar:not(.is-scrolled) .segmented__item { color: rgba(255, 255, 255, 0.74); }
-.topbar:not(.is-scrolled) .segmented__item.is-active { color: #10131a; }
-.topbar:not(.is-scrolled) .segmented__glider { background: #fff; }
+/* 顶栏在首屏与背景融合：无分割线。
+   注意只有首页、且没滚动时顶栏底下才是背景图，别的页面早就换成毛玻璃了；
+   :where() 不增加权重，皮肤自己的覆盖规则照旧生效。
+   字色用 --bar-ink：背景偏亮时 JS 会把它换成深色。 */
+:where(html[data-page="index"]) .topbar:not(.is-scrolled) .topbar__brand,
+:where(html[data-page="index"]) .topbar:not(.is-scrolled) .topbar__link,
+:where(html[data-page="index"]) .topbar:not(.is-scrolled) .icon-btn {
+  color: var(--bar-ink);
+  text-shadow: var(--bar-ink-shadow);
+}
+:where(html[data-page="index"]) .topbar:not(.is-scrolled) .topbar__link.is-active::after { opacity: 0.9; }
+:where(html[data-page="index"]) .topbar:not(.is-scrolled) .icon-btn:hover { background: var(--bar-chip-hover); }
+:where(html[data-page="index"]) .topbar:not(.is-scrolled) .segmented { background: var(--bar-chip); border-color: var(--bar-chip-line); }
+:where(html[data-page="index"]) .topbar:not(.is-scrolled) .segmented__item { color: var(--bar-ink-soft); }
+:where(html[data-page="index"]) .topbar:not(.is-scrolled) .segmented__item.is-active { color: var(--bar-glider-ink); }
+:where(html[data-page="index"]) .topbar:not(.is-scrolled) .segmented__glider { background: var(--bar-glider); }
 
 /* 滚动后（以及非首页）与背景分离：毛玻璃 + 分隔线 */
 .topbar.is-scrolled, html:not([data-page="index"]) .topbar {

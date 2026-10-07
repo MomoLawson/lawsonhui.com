@@ -1,5 +1,5 @@
 import { data, state, subscribe, update, reset, resolvedMode } from './settings.js';
-import { pickRandom, resolveUrlForSkin, currentBackground, syncBackground } from './background.js';
+import { pickRandom, resolveUrlForSkin, currentBackground, syncBackground, refreshBarInk } from './background.js';
 import { createTypewriter } from './typewriter.js';
 import { syncClickFx } from './clickfx.js';
 import { initSearch, openSearch, closeSearch, isSearchOpen } from './search.js';
@@ -81,6 +81,7 @@ function applyState(s) {
   syncSkinControls(s);
   syncControls(s);
   syncBackground();
+  refreshBarInk();
   syncClickFx();
 
   if (s.typewriter === false) typewriter.stop();
