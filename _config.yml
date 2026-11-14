@@ -62,7 +62,10 @@ highlight:
   auto_detect: false
   tab_replace: "  "
   wrap: true
-  hljs: false
+  # 必须是 true：主题 CSS 只写了 .hljs-keyword / .hljs-string 这类带 hljs- 前缀的
+  # 选择器。hljs: false 时 Hexo 输出的是不带前缀的 .keyword / .string，
+  # 样式对不上，代码块就全是单色。改成 true 后输出 hljs-*，和主题 CSS 匹配。
+  hljs: true
 prismjs:
   enable: false
   preprocess: true

@@ -18,8 +18,26 @@ const merged = lawsonConfig.build(hexo.config.lawson);
 // 模板里可以直接用 site.lawson.xxx
 hexo.locals.set('lawson', merged);
 
+// 图片索引必须在 {% imgx %} 标签执行时就可用。
+// 实测：Hexo 渲染文章里的标签时，before_generate 还没跑，
+// hexo.locals.get('imgindex') 是空的，imgx 只能退化成本地路径
+// /img/...，而 /img/ 又被 .gitignore 排除了，public/ 里根本没有
+// 这张图，上线就 404。所以这里在脚本加载时就先建一份索引，
+// 标签里拿不到时再按需重建一次。
+let cachedImageIndex = null;
+const imgxLocalPaths = new Set();
+function getImageIndex() {
+  if (!cachedImageIndex) {
+    cachedImageIndex = imageIndex.buildImageIndex({ root: root, config: merged });
+    hexo.locals.set('imgindex', cachedImageIndex);
+  }
+  return cachedImageIndex;
+}
+getImageIndex();
+
 hexo.extend.filter.register('before_generate', function () {
   const index = imageIndex.buildImageIndex({ root: root, config: merged });
+  cachedImageIndex = index;
   hexo.locals.set('imgindex', index);
 
   const stats = index.stats;
@@ -142,6 +160,10 @@ async function addLocalImageRoutes() {
   }
   collect(index.avatar);
 
+  // 文章里 {% imgx %} 用到的、还没上传图床的图片也要挂进路由，
+  // 否则退化成本地路径后 public/ 里没有文件，同样 404。
+  for (const relPath of imgxLocalPaths) pending.push(relPath);
+
   if (!pending.length) return;
 
   let added = 0;
@@ -159,8 +181,10 @@ hexo.extend.tag.register('imgx', function (args) {
   const relPath = (args[0] || '').trim();
   const alt = args.slice(1).join(' ').trim();
   if (!relPath) return '';
-  const index = hexo.locals.get('imgindex');
+  const index = hexo.locals.get('imgindex') || getImageIndex();
   const item = index ? index.resolve(relPath) : null;
+  if (item && !item.uploaded) imgxLocalPaths.add(relPath);
+  if (!item) imgxLocalPaths.add(relPath);
   const url = item ? item.url : '/' + relPath;
   const caption = alt ? '<figcaption>' + alt + '</figcaption>' : '';
   return '<figure class="md-figure"><img src="' + url + '" alt="' + alt + '" loading="lazy" decoding="async">' + caption + '</figure>';
